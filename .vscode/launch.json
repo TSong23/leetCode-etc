@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/leet_code_62.js"
+      "program": "${workspaceFolder}/top-intqs-easy.js"
     }
   ]
 }
