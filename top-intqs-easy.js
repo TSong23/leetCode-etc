@@ -28,44 +28,21 @@ var plusOne = function (digits) {
   // see if 9
   // use for loop
 
-  let arrInd = digits.length - 1;
-
-  if (digits.length === 1) {
-    if (digits[0] < 9) {
-      digits[0] += 1
-      return digits
-
-    } else {
-      digits[0] = 0;
-      digits.unshift(1);
-      return digits
-    }
-  };
-
-  for (let i = 0; i < digits.length - 2; i++) {
-
-    if (digits[arrInd - i] < 9) {
-
-      digits[arrInd - i] += 1;
-      return digits
-    } else {
-      digits[arrInd - i] = 0;
+  let arrLen = digits.length;
+  
+  for (let i = 0; i < arrLen; i++){
+    if (digits[arrLen - i - 1] < 9){
+      digits[arrLen - i - 1] += 1;
+      return digits;
+    }else {
+      digits[arrLen - i - 1] = 0; 
     }
   }
-
-  if (digits[1] === 0) {
-    if (digits[0] === 9) {
-      digits[0] === 0;
-      digits.unshift(1);
-      return digits
-    } else {
-      digits[0] += 1
-      return digits
-    }
+  
+  if (digits[0] === 0){
+    digits.unshift(1);
   }
 
   return digits
-
 };
 
-let ans = plusOne([1,0]);
