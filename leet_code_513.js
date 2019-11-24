@@ -34,3 +34,5 @@ var findBottomLeftValue = function (root) {
   return bottomLeft[0];
 
 };
+
+// square fill
