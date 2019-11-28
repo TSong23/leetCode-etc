@@ -46,4 +46,24 @@ var plusOne = function (digits) {
   return digits
 };
 
-// square fill
+// Move Zeroes
+var moveZeroes = function (nums) {
+
+  // when come across, zero, move to end and i--
+  // we get stuck in infinite loop, so have second counter on how many we checked
+
+  let count = 0;
+  let arrLen = nums.length;
+  for (let i  = 0; i < nums.length; i++){
+    if (nums[i] === 0){
+      nums.splice(i, 1);
+      nums.push(0);
+      i -= 1;
+      count +=1 ;
+      if (count === arrLen){
+        return nums
+      }
+    }
+  }
+
+};
