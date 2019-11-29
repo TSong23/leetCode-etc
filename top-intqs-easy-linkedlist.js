@@ -35,3 +35,31 @@ var removeNthFromEnd = function (head, n) {
 
   return head;
 };
+
+
+// reverse linked list
+var reverseList = function (head) {
+
+  if (head === null) {
+    return null
+  }
+
+  let currentNode = head;
+  let newHead = head;
+
+  // currentNode will be maintained as head
+  // cut next node of currentNode
+  // connect currentNode to next next
+  // connect cut node in front of current node
+
+
+
+  while (currentNode.next !== null) {
+    let nextNode = currentNode.next;
+    currentNode.next = currentNode.next.next;
+    nextNode.next = newHead;
+    newHead = nextNode;
+  }
+  return newHead;
+
+};
