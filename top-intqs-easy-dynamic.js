@@ -14,3 +14,7 @@ var climbStairs = function (n) {
 };
 
 
+// house robber
+var rob = function (nums) {
+
+};
