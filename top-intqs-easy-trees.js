@@ -33,25 +33,23 @@ var isSymmetric = function (root) {
   // 1 2 4 8 16 etc. so add everything to queue
   // and check if it is a palindrome?
 
-  let curNode = root;
-  let queue = [root];
-  let i = 0;
-
-  while (curNode.left !== null && curNode.right !== null){
-    queue.push(curNode.left);
-    queue.push(curNode.right);
-    curNode = queue[i + 1];
-    i += 1;
+  if (root === null){
+    return true;
   }
 
-  let qLen = queue.length;
-  let lvl = 1;
-
-  while (qLen >= 1){
-    qLen / 2;
-    lvl += 1;
-  }
-
-  for (let j = 0)
+  return isMirror(root.left, root.right);
 
 };
+
+var isMirror = function(tree1, tree2){
+
+  if (tree1 === null || tree2 === null){
+    return tree1 === tree2;
+  }
+
+  if (tree1.val !== tree2.val){
+    return false;
+  }
+
+  return isMirror(tree1.left, tree2.right) && isMirror(tree1.right, tree2.left);
+}
