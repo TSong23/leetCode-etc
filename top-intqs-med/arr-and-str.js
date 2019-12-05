@@ -36,3 +36,36 @@ var groupAnagrams = function (strs) {
 
 
 };
+
+
+// Longest Substring Without Repeating Characters
+var lengthOfLongestSubstring = function (s) {
+  let reArr = new Array(26).fill(0);
+  let count = 0;
+  let tempCount = 0;
+
+  for (let i = 0; i < s.length; i++) {
+
+    let idx = s.charCodeAt(i) - 97;
+
+    if (reArr[idx] !== 0) {
+      reArr.fill(0);
+      reArr[idx] += 1;
+      if (tempCount > count) {
+        count = tempCount;
+      }
+      tempCount = 1;
+    } else {
+      reArr[idx] += 1;
+      tempCount += 1;
+    }
+
+  }
+  if (tempCount > count) {
+    count = tempCount;
+  }
+
+  return count;
+};
+
+console.log(lengthOfLongestSubstring("pwwkew"));
