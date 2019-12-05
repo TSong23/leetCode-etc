@@ -42,14 +42,41 @@ var rob = function (nums) {
 
 
 // Best Time to Buy and Sell Stock
-// Input: [7, 1, 5, 3, 6, 4]
-// Output: 5
+// Input: [7, 2, 9, 1, 7, 4]
+// Output: 8
 // Explanation: Buy on day 2(price = 1) and sell on day 5(price = 6), profit = 6 - 1 = 5.
 // Not 7 - 1 = 6, as selling price needs to be larger than buying price.
 
 var maxProfit = function (prices) {
   // O(n)
   // keep track of min, max, diff
-  
+  // calculate diff when current price is lower than previous
+  // 2 cases: max changes and min changes
+  // if greater: new max, new diff
+  // if less: new min, reset diff, max
 
+
+  let arrLen = prices.length;
+  if (arrLen === 0) return 0;
+  
+  let min = prices[0];
+  let max = 0;
+  let diff = 0;
+
+  for (let i = 1; i < arrLen; i++){
+    if (prices[i] < min){
+      if ((max - min) > diff) {
+        diff = max - min;
+      }
+      min = prices[i];
+      max = prices[i];
+    } else if (prices[i] > max){
+      max = prices[i];
+      if ( (max - min) > diff){
+        diff = max - min;
+      }
+    }
+  }
+
+  return diff;
 };
