@@ -39,33 +39,46 @@ var groupAnagrams = function (strs) {
 
 
 // Longest Substring Without Repeating Characters
-var lengthOfLongestSubstring = function (s) {
-  let reArr = new Array(26).fill(0);
+// dvdf => 3
+// if hash gets value other than 1, set to 1 but recount
+// abcdaefgb => abcd, bcdaefg
+// dabac => need to delete d and a but not b
+// so keep track of order of d and a. when second a comes in, delete all letters
+// up to including first a.
+// use hash map;
+// keys are letters, values are the respective positions
+
+var lengthOfLongestSubstring = function(str){
+
+  let reHash = {};
+  "abcdefghijklmnopqrstuvwxyz".split('').forEach(let => reHash[let] = [0, null]);
   let count = 0;
   let tempCount = 0;
 
-  for (let i = 0; i < s.length; i++) {
+  for (let i = 0; i < str.length; i++) {
 
-    let idx = s.charCodeAt(i) - 97;
+    if ( reHash[str[i]][0] !== 0  ){
 
-    if (reArr[idx] !== 0) {
-      reArr.fill(0);
-      reArr[idx] += 1;
-      if (tempCount > count) {
+      Object.keys(reHash).forEach(key => {
+        if (reHash[key][1] < i){
+          tempCount += reHash[key][0];
+          reHash[key] = [0, null];
+        }
+      });
+      if (tempCount > count){
         count = tempCount;
       }
-      tempCount = 1;
+      reHash[str[i]] = [1, i];
+      tempCount = 0;
+
     } else {
-      reArr[idx] += 1;
-      tempCount += 1;
+      reHash[str[i]] = [1, i]
     }
 
-  }
-  if (tempCount > count) {
-    count = tempCount;
   }
 
   return count;
 };
 
-console.log(lengthOfLongestSubstring("pwwkew"));
+console.log(lengthOfLongestSubstring("abbcdb"));
+//efghijklmnopqrstuvwxyz
