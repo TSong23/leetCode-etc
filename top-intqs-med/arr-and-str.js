@@ -48,36 +48,19 @@ var groupAnagrams = function (strs) {
 // use hash map;
 // keys are letters, values are the respective positions
 
-var lengthOfLongestSubstring = function(str){
+var lengthOfLongestSubstring = function(s){
 
-  let reHash = {};
-  "abcdefghijklmnopqrstuvwxyz".split('').forEach(let => reHash[let] = [0, null]);
-  let count = 0;
-  let tempCount = 0;
-
-  for (let i = 0; i < str.length; i++) {
-
-    if ( reHash[str[i]][0] !== 0  ){
-
-      Object.keys(reHash).forEach(key => {
-        if (reHash[key][1] < i){
-          tempCount += reHash[key][0];
-          reHash[key] = [0, null];
-        }
-      });
-      if (tempCount > count){
-        count = tempCount;
+  let hashMap = {}, start = 0, max = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (hashMap[s[i]] != null) {
+      if (hashMap[s[i]] + 1 > start) { // if the character is after start
+        start = hashMap[s[i]] + 1; // update start position
       }
-      reHash[str[i]] = [1, i];
-      tempCount = 0;
-
-    } else {
-      reHash[str[i]] = [1, i]
     }
-
+    hashMap[s[i]] = i; // update char position
+    max = (i - start + 1) > max ? (i - start + 1) : max; // update max if neccessary
   }
-
-  return count;
+  return max;
 };
 
 console.log(lengthOfLongestSubstring("abbcdb"));
