@@ -65,3 +65,13 @@ var lengthOfLongestSubstring = function(s){
 
 console.log(lengthOfLongestSubstring("abbcdb"));
 //efghijklmnopqrstuvwxyz
+
+
+
+// longest palindrome
+// O(n^2) 
+var longestPalindrome = function (s) {
+
+  //find all substrings
+  // shti idk
+};
