@@ -74,4 +74,6 @@ var longestPalindrome = function (s) {
 
   //find all substrings
   // shti idk
+  // more squares
+  
 };
