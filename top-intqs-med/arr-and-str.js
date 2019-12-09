@@ -77,3 +77,4 @@ var longestPalindrome = function (s) {
   // more squares
   
 };
+
