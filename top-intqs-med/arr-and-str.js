@@ -71,10 +71,56 @@ console.log(lengthOfLongestSubstring("abbcdb"));
 // longest palindrome
 // O(n^2) 
 var longestPalindrome = function (s) {
+  // adjust string to be odd
+  const newString = getModifiedString(s);
 
-  //find all substrings
-  // shti idk
-  // more squares
-  
+  // create P array to keep track of palidrome lengths
+  let P = new Array(newString.length).fill(0);
+
+  // keep track of center and Right boundary
+  let center = 0;
+  let rightB = 0;
+
+  //iteration through string
+  for (let i = 0; i < newString.length; i++){
+
+    // find mirror index
+    // based on algo, i is always ahead of center
+    let idx_mirror = center - (i - center);
+
+    // check is idx less than rightB?
+    if ( i < rightB) P[i] = Math.min(rightB - i, P[idx_mirror]); 
+
+    // expansion of boundaries
+    // use a while loop to expand
+    let right = i + (P[i] + 1);
+    let left = i - (P[i] + 1);
+
+    while (right < newString.length && left >= 0 && newString[left] === newString[right]){
+      P[i]++;
+      right++;
+      left--;
+    }
+    // check if i has passed the rightB and readjust the center position
+    if (i + P[i] > rightB){
+      center = i;
+      rightB = i + P[i];
+    }
+  }
+
+  let maxLen = Math.max(...P);
+  let index = P.indexOf(maxLen);
+
+  return newString.substring(index - maxLen - 1, index + maxLen).split('#').join('');
+
 };
+
+function getModifiedString(s){
+  let fill = '#';
+  for (let char of s){
+    fill += char;
+    fill += '#';
+  }
+  return fill;
+}
 
