@@ -21,23 +21,49 @@ function ListNode(val){
 // once both l1 and l2 run out of numbers, return 0
 
 var addTwoNumbers = function (l1, l2) {
-  if (l1.val === null && l2.val === null) return null;
-  
-  let cNodeVal = l1.val + l2.val
-  let currentNode = ListNode(cNodeVal);
-  
 
-  if (l1.next && l2.next){    
-    currentNode.next = addTwoNumbers(l1.next + l2.next); 
-  } else if (l1.next && l2.next === null){
-    currentNode.next = addTwoNumbers(l1.next + 0); 
-  } else {
-    currentNode.next = addTwoNumbers(0 + l2.next); 
+  // one list is null
+  // one list runs out first
+  // numbers add to be more than 10
+
+  let cnode1 = l1;
+  let cnode2 = l2; 
+  let newList = ListNode(0);
+  let addNode;
+  let carry = 0;
+
+  while (cnode1 || cnode2){
+
+    if( cnode1 && cnode2){
+      newList.val = cnode1.val + cnode2.val + carry;
+      carry = 0;
+      if (newList.val > 10){
+        carry = newList.val - 10;
+        newList.val -= 10;
+      }
+    } else if (cnode1 && !cnode2){
+      newList.val = cnode1.val + carry;
+      carry = 0;
+      if (newList.val > 10) {
+        carry = newList.val - 10;
+        newList.val -= 10;
+      }
+    } else{
+      newList.val = cnode2.val + carry;
+      carry = 0;
+      if (newList.val > 10) {
+        carry = newList.val - 10;
+        newList.val -= 10;
+      }
+    }
+
+    cnode1 = cnode1.next;
+    cnode2 = cnode2.next;
+    newList.next = 0;
+
+
   }
 
-  return currentNode;
-};
+  return newList;
 
-// square fill
-// sssssquare filllll
-// square fillll
+};
