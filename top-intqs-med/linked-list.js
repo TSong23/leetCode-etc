@@ -26,44 +26,36 @@ var addTwoNumbers = function (l1, l2) {
   // one list runs out first
   // numbers add to be more than 10
 
-  let cnode1 = l1;
-  let cnode2 = l2; 
-  let newList = ListNode(0);
-  let addNode;
+  // initialize a new linked list
+  // let constantly changing node to be eqaul to first node
+  // we need to carry values
+  // sum will keep track of values
+  const newList = new ListNode(0);
+  let tail = newList;
   let carry = 0;
+  let sum;
 
-  while (cnode1 || cnode2){
+  while ( l1 || l2 || carry){
 
-    if( cnode1 && cnode2){
-      newList.val = cnode1.val + cnode2.val + carry;
-      carry = 0;
-      if (newList.val > 10){
-        carry = newList.val - 10;
-        newList.val -= 10;
-      }
-    } else if (cnode1 && !cnode2){
-      newList.val = cnode1.val + carry;
-      carry = 0;
-      if (newList.val > 10) {
-        carry = newList.val - 10;
-        newList.val -= 10;
-      }
-    } else{
-      newList.val = cnode2.val + carry;
-      carry = 0;
-      if (newList.val > 10) {
-        carry = newList.val - 10;
-        newList.val -= 10;
-      }
-    }
+    // go through l1, l2, c and add up the present values
+    // use ternary to check if value exists
+    sum = l1 ? l1.val : 0;
+    sum += l2 ? l2.val : 0; 
+    sum += carry; 
 
-    cnode1 = cnode1.next;
-    cnode2 = cnode2.next;
-    newList.next = 0;
+    // the next one to add on to the tail will be another node
+    tail.next = new ListNode(sum%10);
+    tail = tail.next; 
 
+    // carry = 1 if sum > 10, if not, 0
+    carry = sum >= 10 ? 1 : 0;
 
+    // check if l1 was null. if so, let it remain null. if not, set to next
+    
+    l1 = l1 ? l1.next : null;
+    l2 = l2 ? l2.next : null; 
   }
 
-  return newList;
+  return newList.next;
 
 };
