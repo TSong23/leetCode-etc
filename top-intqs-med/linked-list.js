@@ -78,43 +78,59 @@ var addTwoNumbers = function (l1, l2) {
 // if the two lists link, they must end with the same nodes
 // so if the meeting occurs, it must occur after the difference in lengths
 
-var getIntersectionNode = function ( headA, headB) {
+var getIntersectionNode = function (headA, headB) {
 
   if (!headA && !headB) return null;
 
   let lenA = getLength(headA);
   let lenB = getLength(headB);
+
+  if (!lenA || !lenB) return null;
+
   let lenDiff = Math.abs(lenA - lenB);
+  // console.log("lenA", lenA);
+  // console.log("lenB", lenB);
+  // console.log("lenDiff", lenDiff);
+
   let long, short;
-  if (lenA > lenB){
+
+  if (lenA > lenB) {
     long = headA;
     short = headB;
-  } else{
+  } else {
     long = headB;
     short = headA
   }
 
   let shave = 0;
-  while (shave < lenDiff){
+  while (shave < lenDiff) {
     long = long.next;
+    shave += 1;
   }
 
-  while(long){
-    if( long === short){
+  // console.log("long", long.val);
+  // console.log("short", short.val);
+
+
+  while (long) {
+    if (long === short) {
       return long;
-    }else{
+    } else {
       long = long.next;
-      short = short.next; 
+      short = short.next;
     }
   }
 
   return null;
 };
 
-function getLength(listHead){
-  let count = 1; 
+function getLength(listHead) {
+
+  if (!listHead) return null;
+
+  let count = 1;
   let t = listHead;
-  while (t.next){
+  while (t.next) {
     count += 1;
     t = t.next;
   };
