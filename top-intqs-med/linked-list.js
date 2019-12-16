@@ -61,6 +61,62 @@ var addTwoNumbers = function (l1, l2) {
 };
 
 // Intersection of Two Linked Lists
-var getIntersectionNode = function (headA, headB) {
+// the value of intersection cannot be zero
+// If the two linked lists have no intersection at all, return null.
+// The linked lists must retain their original structure after the function returns.
+// You may assume there are no cycles anywhere in the entire linked structure.
+// Your code should preferably run in O(n) time and use only O(1) memory.
 
+// O(n) time => run through once
+// O(1) memory
+
+// Input: intersectVal = 8, listA = [4, 1, 8, 4, 5], listB = [5, 0, 1, 8, 4, 5], skipA = 2, skipB = 3
+// Output: Reference of the node with value = 8
+
+// there is a way to even out the length of the two linked lists
+// or find the length of the two lists and find the difference
+// if the two lists link, they must end with the same nodes
+// so if the meeting occurs, it must occur after the difference in lengths
+
+var getIntersectionNode = function ( headA, headB) {
+
+  if (!headA && !headB) return null;
+
+  let lenA = getLength(headA);
+  let lenB = getLength(headB);
+  let lenDiff = Math.abs(lenA - lenB);
+  let long, short;
+  if (lenA > lenB){
+    long = headA;
+    short = headB;
+  } else{
+    long = headB;
+    short = headA
+  }
+
+  let shave = 0;
+  while (shave < lenDiff){
+    long = long.next;
+  }
+
+  while(long){
+    if( long === short){
+      return long;
+    }else{
+      long = long.next;
+      short = short.next; 
+    }
+  }
+
+  return null;
 };
+
+function getLength(listHead){
+  let count = 1; 
+  let t = listHead;
+  while (t.next){
+    count += 1;
+    t = t.next;
+  };
+  return count;
+}
