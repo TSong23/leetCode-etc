@@ -59,3 +59,8 @@ var addTwoNumbers = function (l1, l2) {
   return newList.next;
 
 };
+
+// Intersection of Two Linked Lists
+var getIntersectionNode = function (headA, headB) {
+
+};
