@@ -57,32 +57,39 @@ var inorderTraversal = function (root) {
 var zigzagLevelOrder = function (root) {
   if (!root) return [];
   let reArr = [];
+  let clvl = [root];
+  let nlvl = [];
+  let values = [];
+  let flag = true;
 
-  let reQueue = [ [root, 0]];
-  let leftright = 0;
+  // clvl initialized with root
+  while (clvl.length){
 
-  while (reQueue.length) {
-    let shiftArr = reQueue.shift();
-    let node = shiftArr[0];
-    let level = shiftArr[1];
-
-    if (!reArr[level]){
-      reArr.push([node.val]);
-    }else {
-      reArr[level].push(node.val);
-    }    
-
-    if (leftright === 0) {
-      if (node.right) reQueue.push( [node.right, level + 1);
-      if (node.left) reQueue.push([node.left, level + 1 ]);
-      leftright = 1;
+    // initialize node and push value to values
+    let node = clvl.pop();
+    
+    values.push(node.val);
+    
+    // add next level 
+    // utilizing a stack so add accordingly
+    if(flag){
+      if (node.left) nlvl.push(node.left);
+      if (node.right) nlvl.push(node.right);
     } else {
-      if (node.left) reQueue.push([node.left, level + 1]);
-      if (node.right) reQueue.push([node.right, level + 1]);
-      leftright = 0;
+      if (node.right) nlvl.push(node.right);
+      if (node.left) nlvl.push(node.left);
+    }
+
+    // now check if current level is complete
+    // if so, add values to return arr, reset current and next levels, flag
+    if (!clvl.length){
+      reArr.push(values);
+      values = [];
+      clvl = nlvl;
+      nlvl = [];
+      flag = !flag;
     }
   }
-
-  return reArr;
   
+  return reArr;  
 };
