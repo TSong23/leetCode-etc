@@ -113,5 +113,6 @@ var zigzagLevelOrder = function (root) {
 // use to split inorder into two from roots
 
 var buildTree = function (preorder, inorder) {
-  // square fill    
+  // square fill
+  // square fill     
 };
