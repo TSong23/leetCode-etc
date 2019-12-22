@@ -115,4 +115,5 @@ var zigzagLevelOrder = function (root) {
 var buildTree = function (preorder, inorder) {
   // square fill
   // square fill     
+  // suare fiill. iam stupid
 };
