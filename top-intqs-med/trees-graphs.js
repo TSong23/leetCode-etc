@@ -113,12 +113,21 @@ var zigzagLevelOrder = function (root) {
 // use to split inorder into two from roots
 
 var buildTree = function (preorder, inorder) {
+  return build(0, inorder.length - 1);
 
-  
+  function build(l, r) {
+    if (l > r) {
+      return null;
+    }
 
-  let leftArr, rightArr;
+    var v = preorder.shift();
+    var i = inorder.indexOf(v);
+    var root = new TreeNode(v);
 
-  // just look at solutions
-  // nananana
-  
+    root.left = build(l, i - 1);
+    root.right = build(i + 1, r);
+
+    return root;
+  }
 };
+  
