@@ -130,4 +130,70 @@ var buildTree = function (preorder, inorder) {
     return root;
   }
 };
+
+
+
+
+// Populating Next Right Pointers in Each Node
+
+/**
+ * // Definition for a Node.
+ * function Node(val, left, right, next) {
+ *    this.val = val === undefined ? null : val;
+ *    this.left = left === undefined ? null : left;
+ *    this.right = right === undefined ? null : right;
+ *    this.next = next === undefined ? null : next;
+ * };
+ */
+
+// Input: root = [1, 2, 3, 4, 5, 6, 7]
+// Output: [1, #, 2, 3, #, 4, 5, 6, 7, #]
+
+//perfect binary tree given
+// root {
+//   val: 1,
+//     left:
+//   {
+//     val: 2,
+//       left: { val: 4, left: null, right: null, next: null },
+//     right: { val: 5, left: null, right: null, next: null },
+//     next: null
+//   },
+//   right:
+//   {
+//     val: 3,
+//       left: { val: 6, left: null, right: null, next: null },
+//     right: { val: 7, left: null, right: null, next: null },
+//     next: null
+//   },
+//   next: null
+// }
+
+var connect = function (root) {
+  
+  // create a queue
+  // add the root
+  // root.next points to null
+  // add root's left and right to queue
+  // have left.next point to root's right and right.next point to null
+  // 
+
+  let queue = [root]; 
+  let rowNum = 2;
+
+  while (queue[0]){
+    if (queue[0].left) queue.push(queue[0].left);
+    if (queue[0].right) queue.push(queue[0].right);
+
+    let i;
+    for (i = 0; i < rowNum - 1; i++){
+      queue[i].next = queue[i].right;
+    }
+    queue[i+1].next = null;
+
+
+  }
+
+
+};
   
