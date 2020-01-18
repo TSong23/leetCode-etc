@@ -19,16 +19,23 @@ var uniquePaths = function (m, n) {
   let myMat = [];
   let fillArr
 
-  for (let i = 0; i < m; i++){
-    fillArr = new Array(n);
+  for (let i = 0; i < n; i++){
+    fillArr = new Array(m);
     fillArr.fill(1,0);
     myMat.push(fillArr);
   }
 
   // array filled with ones created
-   
+  // iterate and add square up and left of square
 
+  for (let i = 1; i < n-1; i++){
+    for (let j = 1; j < m-1; j++){
+      myMat[i][j] = myMat[i-1][j] + myMat[i][j-1];
 
+    }
+  }
+  
+  return myMat[m-1][n-1];
 
 };
 
