@@ -39,4 +39,22 @@ var uniquePaths = function (m, n) {
 
 };
 
-uniquePaths(3,2);
+
+//Longest Increasing Subsequence
+
+// brute force solution first
+// O(n^2) time complexity
+// have a solutions array that keeps track of length and starting posittion
+
+
+var lengthOfLIS = function (nums) {
+
+  if (nums === []) return 0;
+
+  let curLen = 0;
+  let longLen = 0;
+  let startPos = 0;
+
+  
+
+};
