@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/top-intqs-med/arr-and-str.js"
+      "program": "${workspaceFolder}/top-intqs-med/dynamic-prog.js"
     }
   ]
 }
