@@ -49,12 +49,33 @@ var uniquePaths = function (m, n) {
 
 var lengthOfLIS = function (nums) {
 
-  if (nums === []) return 0;
+  let arrLen = nums.length;
+  if (!arrLen) return 0;
 
   let curLen = 0;
-  let longLen = 0;
+  let longLen = [];
   let startPos = 0;
 
-  
+  for (let i = 0; i < arrLen; i++) {
+    for (let j = i + 1; j < arrLen; j++) {
 
+      if (nums[j] > nums[j - 1]) {
+        curLen++;
+      } else {
+        longLen.push(curLen);
+        curLen = 0;
+
+        if (longLen[i] > longLen[i - 1] || !longLen[i - 1]) {
+          startPos = i;
+        }
+      }
+
+    }
+  }
+
+  let LIS = Math.max(...longLen);
+
+  return LIS;
 };
+
+lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]);
