@@ -52,30 +52,66 @@ var lengthOfLIS = function (nums) {
   let arrLen = nums.length;
   if (!arrLen) return 0;
 
-  let curLen = 0;
-  let longLen = [];
-  let startPos = 0;
+  let latMin, latMax, lenLis, lenAft;
+  let lisArr = [];
 
   for (let i = 0; i < arrLen; i++) {
+    latMin = nums[i];
+    latMax = nums[i];
+    lenAft = 0;
+    lenLis = 1;
     for (let j = i + 1; j < arrLen; j++) {
 
-      if (nums[j] > nums[j - 1]) {
-        curLen++;
-      } else {
-        longLen.push(curLen);
-        curLen = 0;
-
-        if (longLen[i] > longLen[i - 1] || !longLen[i - 1]) {
-          startPos = i;
+      //updating latest min condition first
+      if (nums[j] > latMin && nums[j] < latMax){
+        lenAft++;
+        latMin = nums[j];
+        if (lenAft >= 2){
+          lenLis = lenLis - 1 + lenAft;
         }
+      } else{
+        latMax = nums[j];
+        lenLis++;
       }
-
     }
+    lisArr.push(lenLis);
   }
 
-  let LIS = Math.max(...longLen);
+  let LIS = Math.max(...lisArr);
 
   return LIS;
 };
 
-lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]);
+
+// [3,0,3,0,4] yes
+// [3,2,1,04] no
+
+var canJump = function (nums) {
+  // track last index
+  // track current index
+  // if current index + current value >= last index, return true
+  // shows subset of problems so that sounds like recursion
+
+
+  // each recursion call, input smaller and smaller array
+  // if all childern recursion stacks return false, its false
+  
+  let lastIdx = nums.length - 1;
+
+  jumpHelp(nums, 0, lastIdx);
+  
+
+};
+
+var jumpHelp = function(nums, curIdx, lastIdx){
+
+  if( nums[curIdx] + curIdx >= lastIdx ) return true;
+
+  for (let i = 0; i < nums[curIdx]; i++){
+    if( jumpHelp(nums, curIdx+i, lastIdx) ) return true;
+  }
+
+  return false; 
+
+}
+
