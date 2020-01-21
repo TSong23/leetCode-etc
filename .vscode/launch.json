@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/LRU_cache.js"
+      "program": "${workspaceFolder}/leet_code_592.js"
     }
   ]
 }
