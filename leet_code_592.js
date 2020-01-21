@@ -27,10 +27,10 @@ var fractionAddition = function (expression) {
   // in a for loop, iterate through and use add function
   for (let i = 1; i < splitArr.length; i++){
     fracStack = addFrac(fracStack, splitArr[i]);
+    if (fracStack[1] == 0) fracStack = "+0/1";
   }
 
-  return reduceFrac(fracStack);
-  
+  return reduceFrac(fracStack);  
 };
 
 function splitExp(expression) {  
@@ -87,21 +87,42 @@ function addValue(exp1, exp2){
   if (sign1 !== sign2) {
     // compare numerators
     if (nume1 <= nume2) {
-      let newNum = nume1 - nume2;
-      reExp = sign1 + newNum + '/' + exp1[exp1.length - 1];
-    } else {
       let newNum = nume2 - nume1;
       reExp = sign2 + newNum + '/' + exp1[exp1.length - 1];
+    } else {
+      let newNum = nume1 - nume2;
+      reExp = sign1 + newNum + '/' + exp1[exp1.length - 1];
     }
   } else {
-    let newNum = (exp1[1] + exp[2]).toString();
+    let newNum = parseInt(nume1) + parseInt(nume2);
     reExp = sign1 + newNum + '/' + exp1[exp1.length - 1];
   }
   return reExp;
 }
 
 function reduceFrac(exp){
-  
+  let sign  = exp[0];
+  let splitArr = exp.split(/[-+/]+/)
+  let nume = splitArr[1];
+  let denom = splitArr[2];
+
+  if (nume == 0) return `${nume}` + '/' + '1';
+
+  let greater = (nume > denom) ? nume : denom;
+  for (let i = 2; i < greater; i++) {
+    if (!(nume % i) && !(denom % i)) {
+      nume = nume / i;
+      denom = denom / i;
+      greater = greater / i;
+      i = 2;
+    }
+  }
+
+  if ( sign === '+') {
+    return `${nume}` + '/' + `${denom}`;
+  } else {
+    return sign + `${nume}` + '/' + `${denom}`;
+  }  
 }
 
-fractionAddition("-5/3+1/2");
+fractionAddition("5/3+1/3");
