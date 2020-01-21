@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/top-intqs-med/dynamic-prog.js"
+      "program": "${workspaceFolder}/LRU_cache.js"
     }
   ]
 }
