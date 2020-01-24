@@ -141,4 +141,4 @@ var canJump = function (nums) {
 
 };
 
-console.log(canJump([3, 0, 8, 2, 0, 0, 1]));
+console.log(canJump([3, 0, 4, 2, 0, 0, 1, 1]));
