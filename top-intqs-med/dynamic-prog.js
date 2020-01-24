@@ -90,16 +90,8 @@ var canJump = function (nums) {
   // track last index
   // track current index
   // if current index + current value >= last index, return true
-  // shows subset of problems so that sounds like recursion
 
 
-  // each recursion call, input smaller and smaller array
-  // if all childern recursion stacks return false, its false
-  
-  let lastIdx = nums.length - 1;
-
-  jumpHelp(nums, 0, lastIdx);
-  
 
 };
 
