@@ -84,26 +84,58 @@ var lengthOfLIS = function (nums) {
 
 
 // [3,0,3,0,4] yes
-// [3,2,1,04] no
+// [3,2,1,0,4] no
+
+// track last index
+// track current index
+ // if current index + current value >= last index, return true
+
 
 var canJump = function (nums) {
-  // track last index
-  // track current index
-  // if current index + current value >= last index, return true
 
+  // trivial case check
+  if (nums.length === 1) return true;
+  if (nums[0] === 0) return false;
+  
+  // define needed variables
+  let endIdx = nums.length - 1;
 
+  for (let i = 0; i < endIdx; i++){
+    //go max dist
+    let distTravel = nums[i];
+    let localMaxIdx = i + distTravel;
+
+    if (localMaxIdx >= endIdx) return true;
+
+    if ((nums[localMaxIdx]) !== 0 ){
+      // didn't hit a zero
+      // check if end reached? 
+      i = i + distTravel; 
+      if (i >= endIdx) return true;
+      i--;
+
+    } else {
+      // did hit a zero;
+      // need to back track to i from localMaxIdx
+      for (let j = 1; j < distTravel; j++){
+        let betweenIdx = localMaxIdx - j;
+        let betweenVal = nums[betweenIdx];
+        if ( betweenVal !== 0 ){
+          // see if nums[betweenIdx + betweenVal] results in non-zero
+      
+          if ( nums[betweenIdx + betweenVal] !== 0 ){
+            i = betweenIdx + betweenVal;
+            if (i >= endIdx) return true;
+            i--;
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  return false;
 
 };
 
-var jumpHelp = function(nums, curIdx, lastIdx){
-
-  if( nums[curIdx] + curIdx >= lastIdx ) return true;
-
-  for (let i = 0; i < nums[curIdx]; i++){
-    if( jumpHelp(nums, curIdx+i, lastIdx) ) return true;
-  }
-
-  return false; 
-
-}
-
+console.log(canJump([1,0,1,0]));
