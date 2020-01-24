@@ -117,9 +117,12 @@ var canJump = function (nums) {
     } else {
       // did hit a zero;
       // need to back track to i from localMaxIdx
-      for (let j = 1; j < distTravel; j++){
+      for (let j = 1; j <= distTravel; j++){
         let betweenIdx = localMaxIdx - j;
         let betweenVal = nums[betweenIdx];
+
+        if (betweenIdx === i ) return false;
+
         if ( betweenVal !== 0 ){
           // see if nums[betweenIdx + betweenVal] results in non-zero
       
@@ -138,4 +141,4 @@ var canJump = function (nums) {
 
 };
 
-console.log(canJump([1,0,1,0]));
+console.log(canJump([3, 0, 8, 2, 0, 0, 1]));
