@@ -145,10 +145,35 @@ function getLength(listHead) {
  *     this.next = null;
  * }
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
+
+// Input: 2 -> 1 -> 3 -> 5 -> 6 -> 4 -> 7 -> NULL
+// Output: 2 -> 3 -> 6 -> 7 -> 1 -> 5 -> 4 -> NULL
+
+
+// track of odd head, odd tail, even head, even tail
+// 
 var oddEvenList = function (head) {
+  
+  if (!head) return null;
+
+  let oddHead = head; 
+  let odd = head;
+  let evenHead = head.next;
+  let even = head.next; 
+
+  while(evenTail != null && evenTail.next != null ){
+    // 1. set evenTail.next as oddTails's next; odd linked inc by 1
+    // 2. set oddTail to its newly addded node
+    // 3. 
+
+    odd.next = even.next; 
+    odd = odd.next;
+    even.next = odd.next;
+    even = even.next;
+  }
+
+  odd.next = evenHead;
+
+  return head;
 
 };
