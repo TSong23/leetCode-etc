@@ -215,7 +215,37 @@ var connect = function (root) {
 
 // Output : 3
 
+// iterate through grid. 
+// use BFS to add each pos to queue
+// once queue runs out, it means we found 1 island
+// numIslands ++
+// return num of Islands when we have checked all indexes. 
+// we can change all one's to zeroes to show that index has been checked
 
 var numIslands = function (grid) {
 
+  let islands = 0;
+  let queue = [];
+  for (let i = 0; i < grid.length; i++){
+    for (let j = 0; j < grid[0].length; j++){
+      if ( grid[i][j] !== '0' ) exploreIsland(i,j,grid,queue);
+    }
+  }
+  return islands;
 };
+
+function exploreIsland(i,j,grid,queue){
+  console.log(grid[0]);
+}
+
+
+
+let grid = [
+  ['1','1','0','0','0'],
+  ['1','1','0','0','0'],
+  ['0','0','1','0','0'],
+  ['0','0','0','1','1']
+]
+numIslands(grid);
+
+
