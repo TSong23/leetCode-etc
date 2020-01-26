@@ -136,64 +136,60 @@ var buildTree = function (preorder, inorder) {
 
 // Populating Next Right Pointers in Each Node
 
-/**
- * // Definition for a Node.
- * function Node(val, left, right, next) {
- *    this.val = val === undefined ? null : val;
- *    this.left = left === undefined ? null : left;
- *    this.right = right === undefined ? null : right;
- *    this.next = next === undefined ? null : next;
- * };
- */
 
-// Input: root = [1, 2, 3, 4, 5, 6, 7]
-// Output: [1, #, 2, 3, #, 4, 5, 6, 7, #]
-
-//perfect binary tree given
-// root {
-//   val: 1,
-//     left:
-//   {
-//     val: 2,
-//       left: { val: 4, left: null, right: null, next: null },
-//     right: { val: 5, left: null, right: null, next: null },
-//     next: null
-//   },
-//   right:
-//   {
-//     val: 3,
-//       left: { val: 6, left: null, right: null, next: null },
-//     right: { val: 7, left: null, right: null, next: null },
-//     next: null
-//   },
-//   next: null
-// }
-
-var connect = function (root) {
+// * Definition for a Node.
+// * function Node(val, left, right, next) {
+  // * this.val = val === undefined ? null : val;
+  // * this.left = left === undefined ? null : left;
+  // * this.right = right === undefined ? null : right;
+  // * this.next = next === undefined ? null : next;
+  // * };
   
   // create a queue
   // add the root
-  // root.next points to null
+  // all node.next points to null
+  // if we know it is the end of a row, leave the node as is
+  // if not, connect root.next to store[0]
   // add root's left and right to queue
   // have left.next point to root's right and right.next point to null
-  // 
+  
 
-  let queue = [root]; 
-  let rowNum = 2;
+var connect = function (root) {
+  if (!root) return null;
+  if ( !root.left || !root.right) return root;
 
-  while (queue[0]){
-    if (queue[0].left) queue.push(queue[0].left);
-    if (queue[0].right) queue.push(queue[0].right);
+  let queue = []; 
+  queue.push(root.left);
+  queue.push(root.right);
+  queue.push('#');
 
-    let i;
-    for (i = 0; i < rowNum - 1; i++){
-      queue[i].next = queue[i].right;
+  while (queue.length > 0){
+    //check if end had been reached
+    let curNode = queue.shift();
+    if (curNode !== '#'){
+      //check if it should be last node. the queue is updated
+      if (queue[0] !== '#'){
+        // it isn't the right most node
+        // if it was the right most node, we can leave as is
+        // connect node.next to next node
+        curNode.next = queue[0];
+      }
+      //check if it has children and push
+      if (curNode.left && curNode.right) {
+        queue.push(curNode.left);
+        queue.push(curNode.right);
+      }
+    } else if (queue.length > 0){
+      // so the current queue[0] is the end symbol
+      // means that we reached the end of the row
+      // if the queue isn't empty, previous nodes had left and right
+      // so we need to add '#' so that it signifies the end of child row
+      queue.push('#');
     }
-    queue[i+1].next = null;
-
 
   }
-  
-
+  // now all node.right should point correctly
+  return root;
 };
   
+
