@@ -235,7 +235,9 @@ var numIslands = function (grid) {
 };
 
 function exploreIsland(i,j,grid,queue){
-  console.log(grid[0]);
+  // implement BFS
+  // think about how to minimize double checking
+  // 
 }
 
 
