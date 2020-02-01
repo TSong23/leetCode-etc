@@ -231,18 +231,25 @@ var connect = function (root) {
 var numIslands = function (grid) {
 
   let islands = 0;
-  let queue = [];
-  for (let i = 0; i < grid.length; i++){
-    for (let j = 0; j < grid[0].length; j++){
-      if ( grid[i][j] !== '0' ) exploreIsland(i,j,grid,queue);
+  let height = grid.length;
+  let width = grid[0].length;
+
+  
+  for (let i = 0; i < width; i++){
+    for (let j = 0; j < height; j++){
+      if ( grid[i][j] !== '0' ) {
+        islands++;
+        exploreIsland(i,j);
+      }
     }
   }
   return islands;
 };
 
-function exploreIsland(i,j,grid,queue){
-  // implement BFS
-  // think about how to minimize double checking
+function exploreIsland(i,j){
+  // implement DFS
+  // think about how to minimize double checking... well turns out, i cant
+  
 
 }
 
