@@ -231,27 +231,40 @@ var connect = function (root) {
 var numIslands = function (grid) {
 
   let islands = 0;
-  let height = grid.length;
-  let width = grid[0].length;
+  const height = grid.length;
+  const width = height && grid[0].length;
 
   
-  for (let i = 0; i < width; i++){
-    for (let j = 0; j < height; j++){
+  for (let i = 0; i < height; i++){
+    for (let j = 0; j < width; j++){
       if ( grid[i][j] !== '0' ) {
         islands++;
         exploreIsland(i,j);
       }
     }
   }
+
+  function exploreIsland(i, j) {
+    // implement DFS
+    // think  about how to minimize double checking... well turns out, i cant
+    // first check that indexes are within bounds
+    // check if '0' or '1'
+    if (i < 0 || j < 0 || i >= height || j >= width) return;
+    if (grid[i][j] === '0') return;
+
+    // set to zero then DFS its neightbors
+    grid[i][j] = '0';
+
+    exploreIsland(i - 1, j);
+    exploreIsland(i + 1, j);
+    exploreIsland(i, j - 1);
+    exploreIsland(i, j + 1);
+  }
+
   return islands;
 };
 
-function exploreIsland(i,j){
-  // implement DFS
-  // think about how to minimize double checking... well turns out, i cant
-  
 
-}
 
 
 
