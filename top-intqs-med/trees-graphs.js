@@ -1,4 +1,5 @@
-// binary tree inorder traversal
+///////////////////////// binary tree inorder traversal/////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Definition for a binary tree node.
@@ -30,8 +31,9 @@ var inorderTraversal = function (root) {
 
 };
 
+////////////////////////binary tree zigzag traversal///////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-// binary tree zigzag traversal
 // Given a binary tree, return the zigzag level order traversal of its nodes' values.
 // (ie, from left to right, then right to left for the next level and alternate between).
 
@@ -96,7 +98,9 @@ var zigzagLevelOrder = function (root) {
 
 
 
-// building binary tree from inorder and preorder
+///////////////building binary tree from inorder and preorder///////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 // Construct Binary Tree from Preorder and Inorder Traversal
 // preorder = [3, 9, 20, 15, 7]
 // inorder = [9, 3, 15, 20, 7]
@@ -133,8 +137,8 @@ var buildTree = function (preorder, inorder) {
 
 
 
-
-// Populating Next Right Pointers in Each Node
+//////////////// Populating Next Right Pointers in Each Node////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 
 // * Definition for a Node.
@@ -196,10 +200,8 @@ var connect = function (root) {
 
 
 
-
-
-
-/////////Number of Islands
+////////////////////////////Number of Islands///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 // Given a 2d grid map of '1's(land) and '0's(water), count the number of 
 // islands.An island is surrounded by water and is formed by connecting 
@@ -264,16 +266,52 @@ var numIslands = function (grid) {
   return islands;
 };
 
+//////////Construct Binary Tree from Inorder and Postorder Traversal////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+//postorder travel means search left subtree, right subtree, then root
 
 
+// inorder = [9, 3, 15, 20, 7]
+// postorder = [9, 15, 7, 20, 3]
+
+//    3
+//   / \
+//  9  20
+//    /  \
+//   15   7
+
+// the last entry of post order gives the root
+// divide inorder by finding the root
 
 
-let grid = [
-  ['1','1','0','0','0'],
-  ['1','1','0','0','0'],
-  ['0','0','1','0','0'],
-  ['0','0','0','1','1']
-]
-numIslands(grid);
+var buildTree = function (inorder, postorder) {
+
+};
+
+return build(0, inorder.length - 1);
+
+function build(l, r) {
+  if (l > r) {
+    return null;
+  }
+
+  var v = preorder.shift();
+  var i = inorder.indexOf(v);
+  var root = new TreeNode(v);
+
+  root.left = build(l, i - 1);
+  root.right = build(i + 1, r);
+
+  return root;
+}
 
 
