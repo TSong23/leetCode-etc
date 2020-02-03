@@ -292,9 +292,27 @@ var numIslands = function (grid) {
 // the last entry of post order gives the root
 // divide inorder by finding the root
 
+// to find the left/ right boundary
+
+
 
 var buildTree = function (inorder, postorder) {
+  return build(0, inorder.length - 1);
 
+  function build(l, r) {
+    if (l > r) {
+      return null;
+    }
+
+    var v = postorder.pop();
+    var i = inorder.indexOf(v);
+    var root = new TreeNode(v);
+
+    root.right = build(i + 1, r);
+    root.left = build(l, i - 1);
+
+    return root;
+  }
 };
 
 return build(0, inorder.length - 1);

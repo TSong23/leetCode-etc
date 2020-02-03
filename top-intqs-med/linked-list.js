@@ -177,3 +177,34 @@ var oddEvenList = function (head) {
   return head;
 
 };
+
+
+////////////////////Linked list cycle II ///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+
+var detectCycle = function (head) {
+  if (!head || !head.next || !head.next.next) return null;
+
+  let fast = head.next.next;
+  let slow = head.next;
+
+  while (fast !== slow) {
+    if (!fast.next || !fast.next.next) return null;
+    fast = fast.next.next;
+    slow = slow.next;
+  };
+  let track = head;
+  while (track !== slow) {
+    slow = slow.next;
+    track = track.next;
+  }
+  return slow;
+};
