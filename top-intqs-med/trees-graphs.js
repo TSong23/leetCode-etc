@@ -315,21 +315,36 @@ var buildTree = function (inorder, postorder) {
   }
 };
 
-return build(0, inorder.length - 1);
 
-function build(l, r) {
-  if (l > r) {
-    return null;
+////////////////// Populating next right node II ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// Definition for a Node.
+// function Node(val, left, right, next) {
+//    this.val = val === undefined ? null : val;
+//    this.left = left === undefined ? null : left;
+//    this.right = right === undefined ? null : right;
+//    this.next = next === undefined ? null : next;
+// };
+
+var connectTwo = function (root) {
+  if (!root) return null;
+  if (!root.left || !root.right) return root;
+
+  let myQueue = [[root]];
+  while (myQueue.length) {
+    let curArr = myQueue.shift();
+    console.log(curArr);
+    let newArr = [];
+    while (curArr.length) {
+      let curNode = curArr.shift();
+      if (curNode.left) newArr.push(curNode.left);
+      if (curNode.right) newArr.push(curNode.right);
+      if (curArr[0]) curNode.next = curArr[0];
+    };
+    if (newArr.length) myQueue.push(newArr);
   }
 
-  var v = preorder.shift();
-  var i = inorder.indexOf(v);
-  var root = new TreeNode(v);
-
-  root.left = build(l, i - 1);
-  root.right = build(i + 1, r);
-
   return root;
-}
-
+};
 
