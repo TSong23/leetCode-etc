@@ -328,23 +328,22 @@ var buildTree = function (inorder, postorder) {
 // };
 
 var connectTwo = function (root) {
-  if (!root) return null;
-  if (!root.left || !root.right) return root;
-
-  let myQueue = [[root]];
-  while (myQueue.length) {
-    let curArr = myQueue.shift();
-    console.log(curArr);
-    let newArr = [];
-    while (curArr.length) {
-      let curNode = curArr.shift();
-      if (curNode.left) newArr.push(curNode.left);
-      if (curNode.right) newArr.push(curNode.right);
-      if (curArr[0]) curNode.next = curArr[0];
-    };
-    if (newArr.length) myQueue.push(newArr);
+  if (!root) return root;
+  let queue = [root];
+  while (queue.length) {
+    let length = queue.length;
+    let i = 0
+    while (i < length) {
+      let node = queue.shift();
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+      if (i < length - 1) node.next = queue[0];
+      i++
+    }
   }
-
-  return root;
+  return root
 };
+
+//[1,null,-9,null,8,4,-3,null,null,-3,null,-6,null,null,-6,-4,-9,null,null,6]
+
 
