@@ -21,4 +21,6 @@ var lowestCommonAncestor = function (root, p, q) {
   let myReturn =  (left && right) ? root : (left || right);
 
   return myReturn;
+
+  // finished
 };
