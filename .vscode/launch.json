@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/top-intqs-med/trees-graphs.js"
+      "program": "${workspaceFolder}/array/59.js"
     }
   ]
 }
