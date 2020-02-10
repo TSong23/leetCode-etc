@@ -9,7 +9,7 @@ var generateMatrix = function (n) {
   reArr.push([]);
   reArr[1][2] = 4;
 
-
+  // no simple trick to solve this problem
 
 };
 
