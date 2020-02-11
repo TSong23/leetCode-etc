@@ -13,12 +13,26 @@ const Myquotes = [
 
 function topNtoys(numToys, topToys, toys, numQuotes, quotes){
 
+  // create hash from given toys list
+  // first value is number of mentions and next is number of diff quotes
+  const toyHash = {};
+  for (let i = 0; i < toys.length; i++){
+    toyHash[toys[i]] = [0, 0];
+  }
+  
+
   // loop through quotes
   for (let i = 0; i < numQuotes; ++i) {
     // Split quote in to words, ignoring special chars
-    let quote = quotes[i].split(/\W/gi);  
+    let quote = quotes[i].toLowerCase().split(/\W/gi);  
     
-    console.log(quote);
+    for (let j = 0; j < quote.length; j++){
+      if(!toyHash[quote[j]]){
+        continue;
+      }
+      toyHash[quote[j]][0]++;      
+    }
+    console.log(toyHash);    
   }
 
 }
