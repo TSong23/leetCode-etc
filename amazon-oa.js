@@ -17,25 +17,38 @@ function topNtoys(numToys, topToys, toys, numQuotes, quotes){
   // first value is number of mentions and next is number of diff quotes
   const toyHash = {};
   for (let i = 0; i < toys.length; i++){
-    toyHash[toys[i]] = [0, 0];
-  }
-  
+    toyHash[toys[i]] = [0, {}];
+  }  
 
   // loop through quotes
   for (let i = 0; i < numQuotes; ++i) {
-    // Split quote in to words, ignoring special chars
+    // Split quote in to words, ignoring special chars    
     let quote = quotes[i].toLowerCase().split(/\W/gi);  
     
     for (let j = 0; j < quote.length; j++){
+      // iterate through the words and check for toys of interest
+      // update toyHash accordingly
       if(!toyHash[quote[j]]){
         continue;
       }
-      toyHash[quote[j]][0]++;      
-    }
-    console.log(toyHash);    
+      toyHash[quote[j]][0]++; 
+      toyHash[quote[j]][1][i] = true;     
+    }   
   }
-
+  const myHeap = maxHeap(toyHash);
+  
 }
+
+function maxHeap(toyHash){
+  // implement binary max heap
+  // take the toyHash and iterate through once
+  // then return the heap according to topToys and numToys
+  // this heap will only require siftup operation if heap length is maintained at topToys
+
+  
+}
+
+
 
 topNtoys(MynumToys, MytopToys, Mytoys, MynumQuotes, Myquotes);
 
