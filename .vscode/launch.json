@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/amazon-oa.js"
+      "program": "${workspaceFolder}/oa_amazon.js"
     }
   ]
 }
