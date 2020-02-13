@@ -15,3 +15,7 @@ var generateMatrix = function (n) {
 
 
 generateMatrix(3);
+
+
+// solved 2 2d array problems
+// minimum number of safety boats and skyline problem
