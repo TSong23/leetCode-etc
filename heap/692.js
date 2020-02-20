@@ -11,61 +11,19 @@ var topKFrequent = function (words, k) {
    
   let myHash = {};
   words.forEach(word => {
-    if (myHash[word]){
-      myHash[word]++;
-    }else{
-      myHash[word] = 1;
-    }
+    myHash[word] = myHash[word]+1 || 1;
   });
 
-  let myHeap = [];
-  let heapLen = 0;
-  Object.keys(myHash).forEach(key => {
-    myHeap.push(key);
-    heapLen++;
-    let idx = heapLen -1;
-    heapHelper(key, idx);
-    if (heapLen > k){
-      myHeap.pop();
-      heapLen--;
-    }
-  })
-
-  function heapHelper(key, idx){
-    // in this heap, the left and right order matters
-    // check if it is left most or greater than left
-    // check if last element is greater than parent
-
-    let parentIdx = Math.floor( (idx-1) / 2);    
-    let parentKey = myHeap[parentIdx];
-
-    let leftChildIdx = parentIdx * 2;
-    // compare with its sibling
-    if (idx > leftChildIdx){
-      let leftChildKey = myHeap[leftChildIdx];
-      heapCompare(key, leftChildKey, leftChildIdx, idx);
-    }
-
-    if (heapCompare(key, parentKey, parentIdx, idx)) heapHelper(key, parentIdx);
-    
-    return;
+  let myHeap = Object.keys(myHash).sort((a, b) => {
+    let countCompare = myHash[b] - myHash[a];
+    if (countCompare == 0) return a.localeCompare(b);
+    else return countCompare;
   }
+  );
+  
 
-  function heapCompare(key, parentKey, parentIdx, idx){
-    if (myHash[key] > myHash[parentKey]) {
-      [myHeap[idx], myHeap[parentIdx]] = [myHeap[parentIdx], myHeap[idx]];
-      return true;
-    } else if (myHash[key] === myHash[parentKey]) {
-      if (key < parentKey) {
-        [myHeap[idx], myHeap[parentIdx]] = [myHeap[parentIdx], myHeap[idx]];
-        return true;
-      }
-    }
-    return false; 
-  }
-
-  return myHeap;
+  return myHeap.slice(0,k);
 
 };
 
-topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 3);
+topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4);
