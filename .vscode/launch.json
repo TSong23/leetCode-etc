@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/heap/692.js"
+      "program": "${workspaceFolder}/stack/20.js"
     }
   ]
 }
