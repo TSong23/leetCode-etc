@@ -10,19 +10,24 @@
 // try brute force: a forloop inside while loop
 
 // use the while loop: if the smallestHead = Infinity, then it means all the lists ran out
-
+// square fill
 
 var mergeKLists = function (lists) {
 
   let smallestHead = Infinity;
   let myListHead = ListNode(null);
-  let myListTail;
+  let myListTail = ListNode(null);
+  
 
-  lists.forEach(head => {
-    if(head && head.val < smallestHead){
-      smallestHead = head;
-    }
-  })
+  while (smallestHead < Infinity){
+    smallestHead = Infinity;
+    lists.forEach(head => {
+      if(head && head.val < smallestHead){
+        smallestHead = head;
+      }
+    });
+  }
+  
 
   myListTail = smallestHead;
   myListHead.next = myListTail;
