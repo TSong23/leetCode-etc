@@ -10,7 +10,7 @@
 // try brute force: a forloop inside while loop
 
 // use the while loop: if the smallestHead = Infinity, then it means all the lists ran out
-// square fill
+
 
 var mergeKLists = function (lists) {
 
