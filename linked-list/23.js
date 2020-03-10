@@ -11,6 +11,7 @@
 
 // use the while loop: if the smallestHead = Infinity, then it means all the lists ran out
 // square fill
+// square fill 2
 
 var mergeKLists = function (lists) {
 
