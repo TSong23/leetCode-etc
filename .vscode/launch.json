@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/stack/20.js"
+      "program": "${workspaceFolder}/bst/701.js"
     }
   ]
 }
