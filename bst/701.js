@@ -13,11 +13,7 @@
 
 
 // start with searching the BST
-// 1. <> recursively call function
-// 2. if the val is between the root and on of the childern, put val as roots 
-// child and the former child as vals child
-// 3. return the root
-// 
+
 
 // new approach, try to go down as far as possible, then insert at end
 // check if root.left or right exists
