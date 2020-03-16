@@ -13,7 +13,7 @@
 
 
 // start with searching the BST
-
+// cant even do coinchange at this point
 
 // new approach, try to go down as far as possible, then insert at end
 // check if root.left or right exists
