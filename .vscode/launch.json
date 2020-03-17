@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/bst/701.js"
+      "program": "${workspaceFolder}/dynamic_programming/leet_code_322.js"
     }
   ]
 }
