@@ -1,25 +1,20 @@
 var coinChange = function (coins, amount, count = 0) {
-  console.log(coins,amount,count);
-  if (coins === []) return count;
-  if (coins[coins.length - 1] === amount) return count++;
-  if (coins.length === 1 && coins[0] !== amount) return -1;
 
-  let lastCoin = coins.pop();
-  let newCount;
-  if (lastCoin < amount) {
-    amount = amount - lastCoin;
-    coins.push(lastCoin);
-    newCount = coinChange(coins, amount, count);
-  } else {
-    newCount = coinChange(coins, amount, count);
-  };
-  console.log(newCount, 'newCount');
-  if (newCount === -1) {
-    return -1;
-  } else {
-    return newCount + count;
-  }
+  if (amount in memo) return memo[amount];
+  if (amount === 0) return 0;
+
+  let numCoins = [];
+  coins.forEach(coin => {
+    if (coin <= amount) {
+      numCoins.push(coinChange(coins, amount - coin, memo) + 1);
+    } else {
+      numCoins.push(Infinity);
+    }
+  });
+
+  memo[amount] = Math.min(...numCoins);
+  return memo[amount];
 
 };
 
-coinChange([1,2,5],11);
+console.log('answer: ',coinChange([1,2,5],11));
