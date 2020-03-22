@@ -1,4 +1,7 @@
-var coinChange = function (coins, amount, count = 0) {
+// still haven't solved this completely
+
+
+var coinChange = function (coins, amount, memo = {}) {
 
   if (amount in memo) return memo[amount];
   if (amount === 0) return 0;
