@@ -11,7 +11,7 @@ var rightSideView = function (root) {
   let newArr = [];
   while(myQueue.length){
     let popArr = myQueue.shift();
-    sideView.push(popArr[popArr.length-1]);
+    sideView.push(popArr[popArr.length-1][val]);
     popArr.forEach(el => {
       if(el){
         newArr.push(el.left);
