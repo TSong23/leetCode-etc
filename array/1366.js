@@ -21,8 +21,9 @@ var rankTeams = function (votes) {
   if (votes.length === 1) return votes[0];
 
   let scoreHash = {};
+  let teamMat = [];
 
-  function keepScore(str) {
+  function keepScore(str){
     if (!str.length) return;
     let strMat = str.split('');
     let i = 0;
@@ -33,14 +34,45 @@ var rankTeams = function (votes) {
         scoreHash[char] = 0 + i;
       };
       i++;
-      console.log('scoreHash: ',scoreHash);
     });
   };
 
-  votes.forEach(str => keepScore(str));
-  return;
+  function myOrganize(team){
+    teamMat.push(team);
+    let idx = teamMat.length - 1;
+    if(idx === 0 ) return;
+    bubbleUp(team, idx);
+    return;
+  };
 
+  function bubbleUp(team, idx){
+    if (idx === 0) return;
+    let ahead = teamMat[idx - 1];
+    if (scoreHash[ahead] > scoreHash[team]){
+      [teamMat[idx-1],teamMat[idx]] = [teamMat[idx],teamMat[idx-1]];
+      bubbleUp(team, idx-1);
+    } else if (scoreHash[ahead] === scoreHash[team]){
+      if(ahead > team){
+        [teamMat[idx - 1], teamMat[idx]] = [teamMat[idx], teamMat[idx - 1]];
+        bubbleUp(team, idx - 1);
+      };
+    };
+    return;
+  };
+
+  votes.forEach(str => keepScore(str));
+  Object.keys(scoreHash).forEach(team => myOrganize(team));
+  console.log('scoreHash: ',scoreHash);
+  console.log(teamMat.join(''));
+  return teamMat.join('');
 };
 
-rankTeams(["ABC", "ACB", "ABC", "ACB", "ACB"]);
+rankTeams(["FVSHJIEMNGYPTQOURLWCZKAX", "AITFQORCEHPVJMXGKSLNZWUY", 
+"OTERVXFZUMHNIYSCQAWGPKJL", "VMSERIJYLZNWCPQTOKFUHAXG", "VNHOZWKQCEFYPSGLAMXJIUTR", 
+"ANPHQIJMXCWOSKTYGULFVERZ", "RFYUXJEWCKQOMGATHZVILNSP", "SCPYUMQJTVEXKRNLIOWGHAFZ", 
+"VIKTSJCEYQGLOMPZWAHFXURN", "SVJICLXKHQZTFWNPYRGMEUAO", "JRCTHYKIGSXPOZLUQAVNEWFM",
+ "NGMSWJITREHFZVQCUKXYAPOL", "WUXJOQKGNSYLHEZAFIPMRCVT", "PKYQIOLXFCRGHZNAMJVUTWES",
+  "FERSGNMJVZXWAYLIKCPUQHTO", "HPLRIUQMTSGYJVAXWNOCZEKF", "JUVWPTEGCOFYSKXNRMHQALIZ",
+   "MWPIAZCNSLEYRTHFKQXUOVGJ", "EZXLUNFVCMORSIWKTYHJAQPG", "HRQNLTKJFIEGMCSXAZPYOVUW",
+    "LOHXVYGWRIJMCPSQENUAKTZF", "XKUTWPRGHOAQFLVYMJSNEIZC", "WTCRQMVKPHOSLGAXZUEFYNJI"]);
 
