@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/recursion/202.js"
+      "program": "${workspaceFolder}/dynamic_programming/53.js"
     }
   ]
 }
