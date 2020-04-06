@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/array/122.js"
+      "program": "${workspaceFolder}/hash/49.js"
     }
   ]
 }
