@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/hash/counting_elements.js"
+      "program": "${workspaceFolder}/linked-list/876.js"
     }
   ]
 }
