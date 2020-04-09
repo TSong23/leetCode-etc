@@ -8,24 +8,14 @@
 
 
 var middleNode = function (head) {
-  let listLen = 1;
-  let countNode = head;
-  while (countNode.next){
-    listLen++;
-    countNode = countNode.next;
-  };
+  let slow = head;
+  let fast = head; 
 
-  let mid;
-  if (listLen % 2 === 0){
-    mid = Math.round((listLen)/2) + 1;
-  } else{
-    mid = Math.round((listLen) / 2);
+  while (fast && fast.next){
+    fast = fast.next.next;
+    slow = slow.next;
   };
-
-  for(let i = 1; i < mid; i++){
-    head = head.next;
-  };
-  return head;
+  return slow;
 };
 
 console.log(Math.round(5 / 2) + 1);
