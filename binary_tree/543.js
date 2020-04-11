@@ -34,7 +34,7 @@ var diameterOfBinaryTree = function (root) {
     return myRet;
   };
 
-  let myRe = findDepth(root);
+  findDepth(root);
   return sumMax;  
 };
 
