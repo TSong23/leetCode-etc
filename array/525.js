@@ -33,11 +33,12 @@ var findMaxLength = function (nums) {
 
   if (nums.length <= 1) return 0;
 
-  let resetArr = [[0,0]];
+  let resetArr = [];
   let zeroCount = 0;
   let oneCount = 0;
   let countHash = {};
   let curLen = 0;
+  let maxLen = 0;
 
   for(let i = 0; i < nums.length; i++){
     if(nums[i]){
@@ -45,14 +46,25 @@ var findMaxLength = function (nums) {
     }else{
       zeroCount++;
     };
-    countHash[i] = [zeroCount, oneCount];
+
+    if(zeroCount > 0 && zeroCount === oneCount){
+      resetArr.push([i, zeroCount * 2]);
+      curLen = curLen + zeroCount*2;
+      if (curLen > maxLen) maxLen = curLen;
+      zeroCount = 0;
+      oneCount = 0;
+      continue;
+    };
+
     if(zeroCount > 0 && oneCount > 0){
       resetArr.push([i, Math.abs(oneCount-zeroCount)*2-1]);
       // oneCount = 0;
       // zeroCount = 0;
     }
   };
-  return 0;
+  return maxLen;
 };
+findMaxLength([1,0,1]);
+// findMaxLength([0, 1, 0, 1, 1, 1,1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0]);
 
-findMaxLength([0, 1, 0, 1, 1, 1,1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0]);
+// git add
