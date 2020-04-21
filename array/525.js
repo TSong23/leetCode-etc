@@ -67,4 +67,4 @@ var findMaxLength = function (nums) {
 findMaxLength([1,0,1]);
 // findMaxLength([0, 1, 0, 1, 1, 1,1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0]);
 
-// git add
+// git add .
