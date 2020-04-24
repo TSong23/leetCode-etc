@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/array/525.js"
+      "program": "${workspaceFolder}/array/search_rotated_array.js"
     }
   ]
 }
