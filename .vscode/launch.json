@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/array/search_rotated_array.js"
+      "program": "${workspaceFolder}/search/isBadVersion.js"
     }
   ]
 }
