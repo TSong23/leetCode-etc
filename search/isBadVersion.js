@@ -16,7 +16,18 @@
 
 // if n/2 is true => upper, false => lower
 
-
+// if (isBadVersion(upper) && !isBadVersion(lower)){
+    //   if (upper - lower < 2) return upper;
+    //   let myMid = Math.ceil(upper / 2);
+    //   if (isBadVersion(myMid)) {
+    //     return searchBetween(lower, myMid);
+    //   } else {
+    //     return searchBetween(myMid, upper);
+    //   };
+    // }else{
+    //   if (isBadVersion(lower)) return lower;
+    //   if (!isBadVersion(upper)) return upper + 1;
+    // };
 
 var solution = function (isBadVersion) {
   /*
@@ -25,43 +36,40 @@ var solution = function (isBadVersion) {
   */
 
   function searchBetween(lower, upper){
-    if (isBadVersion(upper) && !isBadVersion(lower)){
-      if (upper - lower < 2) return upper;
-      let myMid = Math.ceil(upper / 2);
-      if (isBadVersion(myMid)) {
-        return searchBetween(lower, myMid);
-      } else {
-        return searchBetween(myMid, upper);
+    let myMid;
+    while(upper - lower > 1){
+      myMid = Math.round( (upper + lower)/2 );
+      if(isBadVersion(myMid)){
+        upper = myMid;
+      }else{
+        lower = myMid;
       };
-    }else{
-      if (isBadVersion(lower)) return lower;
-      if (!isBadVersion(upper)) return upper + 1;
-    };
+    }
+    return upper;
   };
 
   return function (n) {
+    if (isBadVersion(1)) return 1;
     return searchBetween(1, n);
   };
 };
 
 function searchBetween1(lower, upper) {
-  console.log('lower:', lower);
-  console.log('upper: ',upper);
-
-  if (upper - lower < 2) return lower;
-  
-  let myMid = Math.ceil(upper / 2);
-  if (isBadVersion1(myMid)) {
-    return searchBetween1(lower, myMid);
-  } else {
-    return searchBetween1(myMid+1, upper);
-  };
-  
+  let myMid;
+  while (upper - lower > 1) {
+    myMid = Math.round( (upper + lower) / 2);
+    if (isBadVersion1(myMid)) {
+      upper = myMid;
+    } else {
+      lower = myMid;
+    };
+  }
+  return upper;  
 };
 
 function isBadVersion1(n){
-  if (n >= 4) return true;
+  if (n > 1) return true;
   return false;
-}
+};
 
-searchBetween1(1,10);
+console.log(searchBetween1(1,2));
