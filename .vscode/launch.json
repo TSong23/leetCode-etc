@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/search/perfect_square.js"
+      "program": "${workspaceFolder}/recursion/floodfill.js"
     }
   ]
 }
