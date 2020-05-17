@@ -22,23 +22,23 @@ loop of the array
 
 
 var maxSubarraySumCircular = function (A) {
+  let globalMax = -Infinity;
+  let localMax = 0;
+  let myNewArr = A.concat(A);
 
-  const countArr = [A[0]];
-  let count = A[0];
-  let baseVal = A[0];
-  let 
-
-  for(i = 1; i < A.length; i++){
-    count += A[i];
-    countArr.push(count);
+  for(let i = 0; i < myNewArr.length; i++){
+    localMax = Math.max(myNewArr[i], myNewArr[i]+localMax);
+    if (localMax > globalMax){
+      globalMax = localMax;
+    };
   };
 
-  console.log(countArr);
-
+  
+  return globalMax;
 };
 
-maxSubarraySumCircular([1, -2, 3, -2]);
-maxSubarraySumCircular([3, -1, 2, -1]);
 
 
-// use Kadane's algo
+
+//understood kadane's algo. don't understand how it applies to two interval
+// arrays
