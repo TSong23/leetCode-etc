@@ -40,3 +40,5 @@ var removeKdigits = function (num, k) {
 
 
 };
+
+// i don't understand the solutions lol
