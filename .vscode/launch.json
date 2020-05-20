@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/array/Maximum_Sum_Circular_Subarray.js"
+      "program": "${workspaceFolder}/stack/stock_span.js"
     }
   ]
 }
