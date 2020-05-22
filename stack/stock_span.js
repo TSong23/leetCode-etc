@@ -22,7 +22,7 @@ Note that (for example) S.next(75) returned 4, because the last 4 prices
 var StockSpanner = function() {
   this.stack = [];
   this.stackIdx = -1;
-  this.memo = { 0 : 1, 1: 1, 2 ... idx : consec};
+
 };
 
 

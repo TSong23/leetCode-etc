@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/stack/stock_span.js"
+      "program": "${workspaceFolder}/heap/sort_char_freq.js"
     }
   ]
 }
