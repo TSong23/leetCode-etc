@@ -15,6 +15,7 @@ Reminder: The inputs and the desired output are lists of Interval objects, and n
   3. shift A and B when the count is greater than AEnd or BEnd.
 
   need to finish this
+  1 year already
 */
 
 var intervalIntersection = function (A, B) {
