@@ -17,6 +17,7 @@ Reminder: The inputs and the desired output are lists of Interval objects, and n
   need to finish this
   1 year already
   back in sf
+  done with tft forcus on coding
 */
 
 var intervalIntersection = function (A, B) {
