@@ -15,3 +15,5 @@ var isSubsequence = function (s, t) {
   return false;
 
 };
+
+// solved using brute force
