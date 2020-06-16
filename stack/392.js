@@ -16,4 +16,4 @@ var isSubsequence = function (s, t) {
 
 };
 
-// solved using brute force
+// i did not complete my goals for today lol
