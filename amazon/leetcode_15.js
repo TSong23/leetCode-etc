@@ -28,13 +28,17 @@ function threeSum(nums){
     for(let j = i+1; j < arrLen - 1; j++){
       for(let k = j+1; k < arrLen; k++){
         let cur = [nums[i], nums[j], nums[k]];
-        let cur2 = cur.sort();
-        if(myHash[cur2]){
+        if( cur.reduce(function(a,b){a+b},0)){
           continue;
         }else{
-          myHash[cur2] = 1;
-          arrCom.push(cur);
-        }                
+          let cur2 = cur.sort();
+          if(myHash[cur2]){
+            continue;
+          }else{
+            myHash[cur2] = 1;
+            arrCom.push(cur);
+          }                
+        };
       };
     };
   };
