@@ -15,39 +15,49 @@
 //   [-1, -1, 2]
 // ]
 
-// the brute force way is to generate all unique combinations of three 
-// then go through each and check if it is zero
+// solution: sort the array first
+// then set pointers L, R as i+1 and at the end respectively
+// see if nums[i] + nums[i+1] + nums[end] <>= 0
+// if sum > 0, move L pointer, = 0, save the solution set, move right pointer
+// if solution already exists in hash, dont save
+// break this loop when nums[i] >= 0.
+
 
 function threeSum(nums){
+  if(nums.length < 3) return [];
 
-  let arrLen  =nums.length;
-  let arrCom = [];
-  let reArr = [];
-  let myHash = {};
-  for(let i = 0; i<arrLen-2;i++){
-    for(let j = i+1; j < arrLen - 1; j++){
-      for(let k = j+1; k < arrLen; k++){
-        let cur = [nums[i], nums[j], nums[k]];
-        if( cur.reduce(function(a,b){a+b},0)){
-          continue;
+  let reArr = []; 
+  let myArr = nums.sort(function(a,b){return a -b;});
+  let arrLen = nums.length;
+  let L ,R; 
+  let solHash = {};
+  if (myArr[0] === myArr[arrLen - 1] && myArr[0] === 0) return [[0, 0, 0]];
+
+  for(let i = 0; i < arrLen-2; i++){
+    if(myArr[i] > 0 ) break;
+    L = i+1;
+    R = arrLen-1;
+
+    while(L < R){
+      if( (myArr[i] + myArr[L] + myArr[R]) === 0){
+        let myKey = [nums[i] , nums[L], nums[R]].toString();
+        if(solHash[myKey] ){
+          R-=1;
         }else{
-          let cur2 = cur.sort();
-          if(myHash[cur2]){
-            continue;
-          }else{
-            myHash[cur2] = 1;
-            arrCom.push(cur);
-          }                
+          solHash[myKey] = [nums[i], nums[L], nums[R]];
         };
+      } else if ((myArr[i] + myArr[L] + myArr[R]) < 0){
+        L+=1;
+      }else{
+        R-=1;
       };
     };
   };
-  arrCom.forEach(arr => {
-    if(arr.reduce(function(a,b){return a+b}) === 0) reArr.push(arr);
-  });
-  return reArr;
+  reArr = Object.values(solHash);
+  return reArr; 
+
 };
 
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(threeSum([-1, -2, -3, 4, 1, 3, 0, 3, -2, 1, -2, 2, -1, 1, -5, 4, -3]));
 
 
