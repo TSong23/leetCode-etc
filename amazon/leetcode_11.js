@@ -14,40 +14,25 @@
 var maxArea = function (height) {
   let lPt = 0;
   let rPt = height.length - 1;
-  let rMaxPt = rPt;
-  let lMaxPt = 0;
-  let lMax = height[lPt];
-  let rMax = height[rPt];
-  let maxA = Math.min(lMax, rMax) * (rPt - lPt);
+  let maxA = Math.min(height[lPt], height[rPt]) * (rPt - lPt);
   let localA;
 
-  while(lPt < rPt){
-    lPt += 1;
-    if(height[lPt] > lMax){
-      // check if area is increased;
-      // switch lMax, maxA, 
-      localA = Math.min(height[lPt], rMax) * (rMaxPt - lPt);
-      if(localA > maxA){
-        lMax = height[lPt];
-        lMaxPt = lPt;
-        maxA = localA;
-      };
-    };
-    rPt -= 1;
-    if(height[rPt] > rMax){
-      // check if area is increased;
-      // switch rMax
-      localA = Math.min(height[rPt], lMax) * (rPt - lMaxPt);
-      if (localA > maxA) {
-        rMax = height[rPt];
-        rMaxPt = rPt;
-        maxA = localA;
-      };
+  while (lPt < rPt) {
+    if (height[lPt] <= height[rPt]) {
+      lPt += 1;
+      localA = Math.min(height[lPt], height[rPt]) * (rPt - lPt);
+      if (localA > maxA) maxA = localA;
+    } else {
+      rPt -= 1;
+      localA = Math.min(height[lPt], height[rPt]) * (rPt - lPt);
+      if (localA > maxA) maxA = localA;
     };
   };
   return maxA;
-
 };
 
 
-console.log(maxArea([2, 3, 4, 5, 18, 17, 6]))
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+
+
+
