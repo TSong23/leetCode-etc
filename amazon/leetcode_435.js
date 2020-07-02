@@ -18,6 +18,7 @@
 //       [4  5]
 // then go to the next interval that starts with pointer, and save idx value of those interval
 // when reach the end, return intervals.length - idx.length
+// solved
 
 
 var eraseOverlapIntervals = function (intervals) {
