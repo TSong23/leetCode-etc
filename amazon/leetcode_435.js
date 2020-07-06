@@ -20,7 +20,7 @@
 // when reach the end, return intervals.length - idx.length
 // solved
 // need to make algorithm for stock market
-
+// ... rip another week
 
 var eraseOverlapIntervals = function (intervals) {
   if (intervals.length <= 1) return 0;
