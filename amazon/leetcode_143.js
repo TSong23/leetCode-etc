@@ -16,6 +16,7 @@
 
 var reorderList = function (head) {
   // split the list
+  if (!head) return null;
   if(!head.next) return head;
   let run1 = head;
   let run2 = head;
@@ -39,11 +40,15 @@ var reorderList = function (head) {
   head2 = prev;
 
   // merge the list
-  let curr = head;
-  let next = head.next;
-  while(head2){
-    
-  };
+  while (head && head2) {
+    let p1 = head.next;
+    let p2 = head2.next
+    head.next = head2;
+    head.next.next = p1;
+    head2 = p2;
+    head = p1;
+  }
+  return head;
 
 };
 
