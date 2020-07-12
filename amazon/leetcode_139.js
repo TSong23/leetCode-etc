@@ -26,17 +26,22 @@ var wordBreak = function (s, wordDict) {
   });
   if (charCount > s.length) return false;
 
-  // select first word from wordDict
-  let startWord = wordDict[0];
-  let startChar = startWord[0];
-
-  for(let i =0; i< s.length; i++){
-    if (s[i] === startChar){
-      // start search
+  // keep a editable copy of s
+  let copyS = s;
+  
+  // word search function
+  function wordSearch(word){
+    for (let i = 0; i<s.length;i++){
+      if(s[i] === word[0]){
+        //confirm same word
+      };
     };
   };
 
-
+  // same word function
+  function sameWord()
 };
+
+
 
 console.log(wordBreak("leetcode",["leet", "code"]))
