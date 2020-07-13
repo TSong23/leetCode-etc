@@ -12,34 +12,21 @@
 
 // initial thoughts: dp problem => break up in to smaller bits
 // small bit 1: confirm if a word from Dict exists by iteration or stack
-// small bit 2: once chars in String is used, cannot be reused. so remove the chars and break up the string in to separate sections
-// small bit 3: once a word is found, go on and find the next one from Dict
+// For each index i see if we can find a word from the available words in the substring s[i..j) (ie. i inclusive to j non-inclusive). If found, then we can reach j. Recursively continue this process with the goal of reaching the end index N of the input string s. Return true if and only if we can reach N.
 
-// repeat small bits
-// also, we can count the amount of chars in dict and if > chars in S, return false
 
 var wordBreak = function (s, wordDict) {  
-  //check for chars in Dict > chars in s
-  let charCount = 0;
-  wordDict.forEach(element => {
-    charCount += element.length;
-  });
-  if (charCount > s.length) return false;
-
-  // keep a editable copy of s
-  let copyS = s;
-  
-  // word search function
-  function wordSearch(word){
-    for (let i = 0; i<s.length;i++){
-      if(s[i] === word[0]){
-        //confirm same word
+  for (let i = 0; i < s.length-1;i++){
+    for(let j = i+1; j < s.length; j++){
+      let wordSeg = s.slice(i,j);
+      if (wordDict.includes(wordSeg)){
+        i = j;
+        j = i + 1;
       };
+      if(j === s.length) return true;
     };
   };
-
-  // same word function
-  function sameWord()
+  return false;
 };
 
 
