@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/amazon/leetcode_139.js"
+      "program": "${workspaceFolder}/binary_tree/437.js"
     }
   ]
 }
