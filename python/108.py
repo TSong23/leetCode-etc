@@ -1,3 +1,5 @@
+# stupid python
+
 class Solution:
     def sortedArrayToBST(self, nums):
       if len(nums) == 0:
