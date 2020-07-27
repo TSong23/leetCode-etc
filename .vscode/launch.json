@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/array/leetcode_238.js"
+      "program": "${workspaceFolder}/amazon/mergeStrings_asana_.js"
     }
   ]
 }
