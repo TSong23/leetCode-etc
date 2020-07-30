@@ -130,6 +130,10 @@ If q[i] = 1, reflect the matrix in its main diagonal.
 If q[i] = 2, reflect the matrix in its secondary diagonal.
 Example
 For
+
+90 rotation is flip along secondary diagonal and reverse array row wise
+main diag => [i,j] => [j,i]
+second diag => [i,j] => [max - j, max - i]
 a = [ [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9]]
@@ -169,6 +173,10 @@ mutateMatrix(a, q) = [[11, 2, 9, 1],
 [80, 3, 5, 14]]
 */
 
+// for 90 deg rotation: 
 
+function mutateArr(arr,query){
+
+};
 
 console.log(removeDigits("ab12c","1zz456"));
