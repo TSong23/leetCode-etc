@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/heap/215.js"
+      "program": "${workspaceFolder}/code_signal/asana.js"
     }
   ]
 }
