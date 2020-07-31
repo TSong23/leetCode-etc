@@ -1,36 +1,12 @@
-/*
-
-5. You are given operations, an array containing the following two types of operations:
-[0, a, b] - Create and save a rectangle of size a × b;
-[4:57 AM] [1, a, b] - Answer the question: "Could every one of the saved rectangles fit in a box of size a × b". It is possible to rotate rectangles by 90 degrees; ie: a rectangle of dimensions a × b can be rotated so that its dimensions are b × a. Note: We're trying to fit each rectangle within the box separately (not all at the same time).
-Your task is to return an array of booleans, representing the answers to the second type of operation, in the order they appear.
-Example
-For operations = [[1, 1, 1]], the output should be rectangleBoxes(operations) = [true].
-There are no rectangles, so they all can be fit in any box.
-For operations = [[0, 1, 3], [0, 4, 2], [1, 3, 4], [1, 3, 2]], the output should be
-rectangleBoxes(operations) = [true, false].
-example
-A 1 × 3 rectangle is added;
-A 4 × 2 rectangle is added;
-We need to check if it's possible to store each of the rectangles from operations 1 and 2 into a 3 × 4 area.
-The rectangle from the 1st operation can be stored as-is.
-The rectangle from the 2nd operation can be rotated to become 2 × 4 and after that it will fit.
-Both rectangles will fit, so add a true to the result.
-We need to check if it's possible to store each of the rectangles from operations 1 and 2 into a 3 × 2 area.
-The rectangle from the 1st operation can be rotated to become 3 × 1 and after that it will fit.
-The rectangle from the 2nd operation will not fit, even if it's rotated.
-Not all of the rectangles could be stored, so add a false to the result.
-So the final answer is [true, false].
-
-*/
-
 
 /*
 You are given a positive number n.You are to find all the numbers 0..n inclusive that have the
-digits[0, 2, 4] in them.for example n = 10 output would be 4. 0 and 10 have the digit 0, 2 and 4 have the digits 2 and 4 in them
+digits[0, 2, 4] in them. for example n = 14 output would be 6. 0 and 10 have the digit 0, 2 and 4 have the digits 2 and 4 in them
+[0,2,4,10,12,14]
 */
 
 // have to go through each number and %10 to isolate each digit
+// 267
 function count024(n){
 
   let mycount = 1;
@@ -38,7 +14,7 @@ function count024(n){
   for( let i = 1; i < n+1; i++){
     curNum = i;
     while(curNum > 0){
-      digit = curNum % 10;
+      digit = curNum % 10; 
       if (digit === 0 || digit === 2 || digit === 4){
         mycount++;
         break;
@@ -101,13 +77,14 @@ Three of these cases match the requirement that s < t, so the answer is 3.
 function removeDigits(s,t){
   let mycount = 0;
   let [sArr, tArr] = [s.split(''), t.split('')];
-  let mySet = new Set(['1','2','3','4','5','6','7','8','9','0']);
-
+  let mySet = new Set(['1','2','3','4','5','6','7','8','9','0']);  
+  let holdStr, holdArr;
   
-  let holdStr;
   for (let i = 0; i < sArr.length; i++){
     if(mySet.has(sArr[i])){
-      holdStr = sArr.slice(0,i).concat(sArr.slice(i+1)).join('');
+      holdArr = sArr;
+      holdArr.splice(i,1);
+      holdStr = holdArr.join('');
       if( holdStr.localeCompare(t) < 0) mycount++;
     };
   };
@@ -118,10 +95,11 @@ function removeDigits(s,t){
       if (holdStr.localeCompare(s) > 0) mycount++;
     };
   };
- 
 
   return mycount;  
 };
+
+
 
 /*
 Given a square matrix of integers a and an array of queries q, your task is to return the given matrix after processing all the queries on it. There are three types of queries:
@@ -130,13 +108,17 @@ If q[i] = 1, reflect the matrix in its main diagonal.
 If q[i] = 2, reflect the matrix in its secondary diagonal.
 Example
 For
-
+[
+  [3,6,9],
+  [2,5,8],
+  [1,4,7]
+]
 90 rotation is flip along secondary diagonal and reverse array row wise
 main diag => [i,j] => [j,i]
-second diag => [i,j] => [max - j, max - i]
+second diag => [i,j] => [row - j, col - i] row = 2, col = 2
 a = [ [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9]]
+      [4, 5, 6],  6 // 1,2 => 0,1
+      [7, 8, 9]]  8    0,1 => 1,2
 and
 q = [0, 1, 2]
 the output should be
@@ -167,16 +149,141 @@ a = [[11, 2, 9, 1],
 and
 q = [0, 1, 2, 0]
 the output should be
-mutateMatrix(a, q) = [[11, 2, 9, 1],
-[17, 4, 0, 32],
-[1, 7, 10, 6],
-[80, 3, 5, 14]]
+mutateMatrix(a, q) = 
+[
+  [11, 2, 9, 1],
+  [17, 4, 0, 32],
+  [1, 7, 10, 6],
+  [80, 3, 5, 14]
+]
 */
 
+// [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9]
+// ]
+
 // for 90 deg rotation: 
-
+// 90 rotation is flip along main diagonal and reverse array row wise
+// main diag => [i, j] => [j, i]
+// second diag => [i, j] => [row - j, col - i] row = 2, col = 2
 function mutateArr(arr,query){
+  let [row, col] = [arr.length, arr[0].length];
+  
+  function mainDiag(arr){
+    for(let i = 0; i < row -1; i++){
+      for( let j=i+1; j<col; j++){
+        [arr[i][j], arr[j][i]] = [arr[j][i], arr[i][j]];
+      };
+    };
+    return arr;
+  };
 
+  function secDiag(arr){
+    for (let i = 0; i < (row - 1); i++) {
+      for (let j = 0; j < ((row - 1) - i); j++) {
+        [arr[i][j], arr[row - 1 - j][row - 1 - i]] = [arr[row - 1 - j][row - 1 - i], arr[i][j]]
+      };
+    };
+    return arr;
+  };
+
+  function rotate(arr){
+    let hold = mainDiag(arr);
+    for(let i = 0; i < row; i++){
+      hold[i].reverse();
+    };
+    return hold;
+  };
+
+  for(let i = 0; i < query.length; i++){
+    if(query[i] === 0 ){
+      arr = rotate(arr);
+    }else if(query[i] === 1){
+      arr = mainDiag(arr);
+    }else{
+      arr = secDiag(arr);
+    };
+  };
+  return arr;
 };
 
-console.log(removeDigits("ab12c","1zz456"));
+
+/*
+5. You are given operations, an array containing the following two types of operations:
+[0, a, b] - Create and save a rectangle of size a × b;
+[1, a, b] - Answer the question: "Could every one of the saved rectangles fit in a box of size a × b". It is possible to rotate rectangles by 90 degrees; ie: a rectangle of dimensions a × b can be rotated so that its dimensions are b × a. Note: We're trying to fit each rectangle within the box separately (not all at the same time).
+Your task is to return an array of booleans, representing the answers to the second type of operation, in the order they appear.
+
+Example
+For operations = [[1, 1, 1]], the output should be rectangleBoxes(operations) = [true].
+There are no rectangles, so they all can be fit in any box.
+For operations = [[0, 1, 3], [0, 4, 2], [1, 3, 4], [1, 3, 2]], the output should be
+rectangleBoxes(operations) = [true, false].
+
+example
+A 1 × 3 rectangle is added;
+A 4 × 2 rectangle is added;
+We need to check if it's possible to store each of the rectangles from operations 1 and 2 into a 3 × 4 area.
+The rectangle from the 1st operation can be stored as-is.
+The rectangle from the 2nd operation can be rotated to become 2 × 4 and after that it will fit.
+Both rectangles will fit, so add a true to the result.
+We need to check if it's possible to store each of the rectangles from operations 1 and 2 into a 3 × 2 area.
+The rectangle from the 1st operation can be rotated to become 3 × 1 and after that it will fit.
+The rectangle from the 2nd operation will not fit, even if it's rotated.
+Not all of the rectangles could be stored, so add a false to the result.
+So the final answer is [true, false].
+*/
+
+// rectangle store, box store: loop through operations as seperate rect and box
+// loop thorugh box and see if all rect fits inside
+
+
+function rectangleBoxes(operations){
+  let rects = [];
+  let boxes = [];
+  let ansArr = [];
+  for(let i = 0; i < operations.length; i++){
+    if(operations[i][0] === 0){
+      rects.push(operations[i]);
+    }else{
+      boxes.push(operations[i]);
+    };
+  };
+  if(!rects.length){
+    for(let i=0; i<boxes.length;i++){
+      ansArr.push(true);
+    };
+    return ansArr;
+  };
+
+  for (let i = 0; i < boxes.length; i++) {
+    let hold = true;
+
+    for (let j = 0; j < rects.length; j++) {
+      if (checkFit(rects[j], boxes[i]) === false) {
+        hold = false;
+        break;
+      };
+    };
+    ansArr.push(hold);
+  };
+
+  return ansArr;
+};
+
+function checkFit(rectangle, box) {
+  if (rectangle[1] > box[1] && rectangle[1] > box[2]) return false;
+  if (rectangle[2] > box[1] && rectangle[2] > box[2]) return false;
+  return true;
+};
+
+
+console.log(rectangleBoxes([1,1,1])) // [true]
+// console.log(rectangleBoxes([[0, 1, 3], [0, 4, 2], [1, 3, 4], [1, 3, 2]])) // [true, false]
+
+// rects[]
+// boxes[1, 1, 1]
+// [true, true, true]
+

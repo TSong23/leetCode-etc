@@ -21,25 +21,26 @@ The new array b will look like[1, 3, 4, 6, 5], which is not in strictly ascendin
 
 // use a single for loop and go from start and end at same iteration
 // also keep max and see if we can exit loop early
+// for odd numbered arrays, how to leave the middle for last?
+// 
 
 function alternatingSort(a) {
   if(a.length === 1) return true;
   let max = -Infinity;
-  let n = a.length/2;
-  if (n%2) n = Math.floor(n);
   let len = a.length;
+  let n = Math.floor(len/2);
   let i = 0;
   for (i; i < n; i++){
     if(a[i] <= max ) return false;
     max = a[i];
     if(a[len-i-1] <= max) return false;
-    max = a[len-i];
+    max = a[len-i-1];
   };
-  if (i < len/2){
-    if (a[i+1] <= max) return false;
+  if (i !== len/2){
+    if (a[i] <= max) return false;
   }
   return true;
 };
 
-console.log(alternatingSort([-52, 2, 31, 56, 47, 29, -35]));
+console.log(alternatingSort([1, 3, 5, 7, 6, 4, 2]));
 // [-92, -48, -23, -17, 0, 41, 45, 89, 89, 95, 96, 99]

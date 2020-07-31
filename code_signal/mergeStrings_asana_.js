@@ -12,7 +12,7 @@ function mergeStrings(s1, s2) {
   let [hash1, hash2] = [countChars(arr1), countChars(arr2)];
   let localC;
   let returnStr = [];
-  while(arr1.length || arr2.length){
+  while(arr1.length && arr2.length){
     if (hash1[arr1[0]] > hash2[arr2[0]]){
       returnStr.push(arr2[0]);
       arr2.shift();
@@ -20,11 +20,22 @@ function mergeStrings(s1, s2) {
       returnStr.push(arr1[0]);
       arr1.shift();
     }else{
-      localC = arr1[0].localCompare(arr2[0]);
-      
+      localC = arr1[0].localeCompare(arr2[0]);   
+      if(localC <= 0){
+        returnStr.push(arr1[0]);
+        arr1.shift();
+      }else{
+        returnStr.push(arr2[0]);
+        arr2.shift();
+      };
     };
   };
-
+  if(!arr1.length){
+    returnStr.push(...arr2);
+  }else{
+    returnStr.push(...arr1);
+  };
+  return returnStr.join('');
 };
 
 function countChars(myArr){

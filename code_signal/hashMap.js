@@ -27,9 +27,9 @@ function hashMap(queryType, query) {
   let newKey;
   for(let i =0; i < queryType.length; i++){
     if(queryType[i] === 'insert'){
-      myHash[query[i][0]] = query[i][0];
+      myHash[query[i][0]] = query[i][1];
     } else if (queryType[i] === 'addToValue'){
-      Object.values(myHash).forEach(val => val += query[i]);
+      Object.keys(myHash).forEach(key => myHash[key] += query[i][0]);
     } else if (queryType[i] === 'addToKey'){
       let myNewHash = {};
       Object.keys(myHash).forEach(key => {
@@ -45,4 +45,4 @@ function hashMap(queryType, query) {
   return mySum;
 }
 
-console.log( hashMap(['insert','addToKey'],[[1],[1]]))
+console.log(hashMap(["insert", "insert", "addToValue", "addToKey", "get"], [[1, 2], [2, 3], [2], [1], [3]]))
