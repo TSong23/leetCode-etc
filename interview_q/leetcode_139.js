@@ -16,19 +16,20 @@
 
 
 var wordBreak = function (s, wordDict) {  
-  for (let i = 0; i < s.length-1;i++){
-    for(let j = i+1; j < s.length; j++){
-      let wordSeg = s.slice(i,j);
-      if (wordDict.includes(wordSeg)){
-        i = j;
-        j = i + 1;
-      };
-      if(j === s.length) return true;
-    };
-  };
-  return false;
+  let idx = 0;
+  let hold = s;
+  while(hold.length){
+    idx++;
+    let wordSeg = hold.slice(0,idx);
+    if (wordDict.includes(wordSeg)) {
+      hold = hold.slice(idx);
+      idx = 0;
+    };    
+    if(idx > hold.length) return false;
+  }
+  return true;
 };
 
 
 
-console.log(wordBreak("leetcode",["leet", "code"]))
+console.log(wordBreak("aaaaaaa", ["aaaa", "aaa"]))

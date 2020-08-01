@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/LRU_cache.js"
+      "program": "${workspaceFolder}/interview_q/leetcode_139.js"
     }
   ]
 }
