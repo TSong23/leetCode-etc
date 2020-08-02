@@ -20,6 +20,7 @@ var wordBreak = function (s, wordDict) {
     for(let idx = 0; idx < len; idx++){
       if(table[idx] && wordDict.includes(s.slice(i,len))){
         table[len] = true;
+        break;
       };
     };
   };
