@@ -9,6 +9,22 @@
 //     [3, 2, 1]
 // ]
 
-var permute = function (nums) {
 
-};
+const permute = (nums) => {
+    let result = [];
+
+    const helper = (curr, remaining) => {
+        if (remaining.length === 0) {
+            result.push(curr);
+            return;
+        } else {
+            for (let i = 0; i < remaining.length; i++) {
+                // curr.push(remaining[i]);
+                helper([...curr, remaining[i]], remaining.slice(0, i).concat(remaining.slice(i + 1)));
+            }
+        }
+    }
+
+    helper([], nums);
+    return result;
+}
