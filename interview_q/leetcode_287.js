@@ -16,8 +16,14 @@ There is only one duplicate number in the array, but it could be repeated more t
 // read only and less than O(n^2) means n log n
 // binary search takes log(n)
 // save binary search result and try to find next
+// first loop through to find min
+// then find next min
+// add up the idx and find the idx that is missing
+// return nums[idx]
 
 var findDuplicate = function (nums) {
+    let [min,curSum] = [1, 0];
+    let len = nums.length;
+    let idxSum = (len - 1) * (len)/2;
     
-
 };
