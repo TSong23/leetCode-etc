@@ -14,16 +14,24 @@ There is only one duplicate number in the array, but it could be repeated more t
 */
 
 // read only and less than O(n^2) means n log n
-// binary search takes log(n)
-// save binary search result and try to find next
-// first loop through to find min
-// then find next min
-// add up the idx and find the idx that is missing
-// return nums[idx]
+// use two pointer solution
+// if there is duplicate, they will map to same index, creating a loop
+// if we detect a loop, we can solve the problem
+
 
 var findDuplicate = function (nums) {
-    let [min,curSum] = [1, 0];
-    let len = nums.length;
-    let idxSum = (len - 1) * (len)/2;
-    
+    if(nums.length === 1) return nums[0];
+    let [slow, fast] = [nums[0], nums[0]];
+
+    while(slow !== fast){
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    };
+    fast = 0;
+    while(slow !== fast){
+        slow = nums[slow];
+        fast = nums[fast];
+    };
+    return slow;    
 };
+
