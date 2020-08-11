@@ -22,40 +22,31 @@ let grid = [
   [1, 5]
 ];
 
-function minPathSum(grid, pos = [0,0], memo = {}) {
+function minPathSum(grid) {
+  let myGrid = [[grid[0][0]]];
+  let [row, col] = [grid.length, grid[0].length];
 
-  let key = pos[0] + "-" + pos[1];
-  if (key in memo) return memo[key];
+  // leftmost column
+  for (let i = 1; i < row; i++) {
+    myGrid.push([myGrid[i - 1][0] + grid[i][0]]);
+  };
 
-  // case 1: right end => go down
-  // case 2: down end => go right
-  // case 3: at end => return last num. this should be first case
-  let gridRow = grid.length - 1
-  let gridCol = grid[0].length - 1;
-  let right, down;
+  // top row
+  for (let i = 1; i < col; i++) {
+    myGrid[0][i] = myGrid[0][i - 1] + grid[0][i];
+  };
 
- 
-
-  if (pos[0] >= gridRow && pos[1] >= gridCol){
-    return grid[gridRow][gridCol];
-  } else if (pos[0] >= gridRow){
-    down = minPathSum(grid, [pos[0], pos[1] + 1], memo);
-    memo[pos[0] + "-" + pos[1]] = down + grid[pos[0]][pos[1]];
-  } else if (pos[1] >= gridCol) {
-    right = minPathSum(grid, [pos[0] + 1, pos[1]], memo);
-    memo[pos[0] + "-" + pos[1]] = right + grid[pos[0]][pos[1]];
-  } else {
-    down = minPathSum(grid, [pos[0], pos[1] + 1], memo);
-    right = minPathSum(grid, [pos[0] + 1, pos[1]], memo);
-
-    if (right < down) {
-      memo[key] = right + grid[pos[0]][pos[1]];
-    } else {
-      memo[key] = down + grid[pos[0]][pos[1]];
+  for (let i = 1; i < row; i++) {
+    for (let j = 1; j < col; j++) {
+      if (myGrid[i - 1][j] > myGrid[i][j - 1]) {
+        myGrid[i][j] = myGrid[i][j - 1] + grid[i][j];
+      } else {
+        myGrid[i][j] = myGrid[i - 1][j] + grid[i][j];
+      }
     }
   }
-  return memo[key];
 
+  return myGrid[row - 1][col - 1];
 }
 
 minPathSum(grid);
