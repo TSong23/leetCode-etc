@@ -21,17 +21,20 @@ There is only one duplicate number in the array, but it could be repeated more t
 
 var findDuplicate = function (nums) {
     if(nums.length === 1) return nums[0];
-    let [slow, fast] = [nums[0], nums[0]];
+    let [slow, fast] = [0, nums[0]];
 
     while(slow !== fast){
         slow = nums[slow];
         fast = nums[nums[fast]];
     };
     fast = 0;
+    slow = nums[slow];
     while(slow !== fast){
         slow = nums[slow];
         fast = nums[fast];
     };
     return slow;    
 };
+
+findDuplicate([1,2,3,4,5,6,7,8,5,9,10])
 
