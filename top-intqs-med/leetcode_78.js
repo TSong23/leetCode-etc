@@ -17,3 +17,13 @@
 //     []
 // ]
 
+// so, push individual entries, entire entry, []
+// then find subset of combinations
+// maybe keep a memo of calculated subset so i don't check
+
+// given a array, pop each element off and find subset 
+// O(n!)
+
+var subsets = function (nums) {
+
+};
