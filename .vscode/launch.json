@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/interview_q/leetcode_22.js"
+      "program": "${workspaceFolder}/top-intqs-med/leetcode_78.js"
     }
   ]
 }
