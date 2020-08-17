@@ -19,17 +19,25 @@ Explanation: Subarray [3] has maximum sum 3
 # don't add -2, 1 is still global max; but local max is -1 because given sub array [1, -2], -1 is max
 # going in to 3, we have two options: [3] and [1, -2] -> max(A[i], localMax); localMax = [3]; globalMax = 3
 # lets combine two iterations of array in to 1
+# keep track of start index; if 
 
 class Solution:
     def maxSubarraySumCircular(self, A):
         myArr = A + A
         localMax = 0 
+        start = 0
+        arrLen = len(A)
         globalMax = float('-inf')
         for i in range(len(myArr)):
             if localMax > myArr[i]+localMax: 
                 localMax = 0
+                start = i
             else: 
-                localMax = myArr[i]+localMax
+                if start % arrLen == i % arrLen:
+                    localMax = 0
+                    start = i
+                else:
+                    localMax = myArr[i]+localMax
             if localMax > globalMax: globalMax = localMax
         return globalMax
 
