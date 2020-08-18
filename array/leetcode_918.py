@@ -23,23 +23,26 @@ Explanation: Subarray [3] has maximum sum 3
 
 class Solution:
     def maxSubarraySumCircular(self, A):
-        myArr = A + A
-        localMax = 0 
-        start = 0
-        arrLen = len(A)
-        globalMax = float('-inf')
-        for i in range(len(myArr)):
-            if localMax > myArr[i]+localMax: 
-                localMax = 0
-                start = i
-            else: 
-                if start % arrLen == i % arrLen:
-                    localMax = 0
-                    start = i
-                else:
-                    localMax = myArr[i]+localMax
-            if localMax > globalMax: globalMax = localMax
-        return globalMax
+        sub_max = A[0]
+        max_sum = A[0]
+        sub_min = A[0]
+        min_sum = A[0]
+        total_sum = A[0]
+
+        for num in A[1:]:
+            total_sum += num
+
+            sub_max = max(num, sub_max + num)
+            sub_min = min(num, sub_min + num)
+
+            max_sum = max(max_sum, sub_max)
+            min_sum = min(min_sum, sub_min)
+
+        # Final max value should be max(total_sum - min_sum, max_sum)
+        if total_sum - min_sum > max_sum > 0:
+            return total_sum - min_sum
+        else:
+            return max_sum
 
 
 test = Solution()
