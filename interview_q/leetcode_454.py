@@ -1,5 +1,5 @@
 class Solution:
-    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+    def fourSumCount(self, A, B, C, D):
         hold1 = {}  # {0: 2, 1: 1, -1: 1}
         hold2 = {}  # {1: 1, 2: 1, 4: 1, -1: 1}
         arrL = len(A)
