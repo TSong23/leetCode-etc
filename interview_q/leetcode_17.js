@@ -8,11 +8,28 @@ combinations = [ad,ae,af,bd,be,bf,cd,ce,cf]
 4. backtracking would work, so can iterative process
 
 backtracking: recursive call within a for loop
-base case: return when no numbers left
+base case: return when input digitsLeft = []
+inputs: digits left (array), current Letters = 'ad'
+output: array containing possible string combinations 
+
 */
 
 var letterCombinations = function (digits) {
-    const letters = {
+    if (!digits.length) return '';
+
+    function myBacktrak(digitsLeft, curString){
+        if(!digitsLeft.length) return [];
+        let curDigit = digitsLeft.shift();
+        let lettersToAdd = digToLetMap[curDigit];
+        let reArr = [];
+        for(let i = 0; i < lettersToAdd.length; i++){
+            newStr = curString.concat(lettersToAdd[i]);
+            reArr.push.apply(myBacktrak(digitsLeft, newStr));
+        };
+        return reArr;
+    };
+    
+    const digToLetMap = {
         '2': ['a','b','c'],
         '3': ['d', 'e', 'f'],
         '4': ['g', 'h', 'j'],
@@ -22,8 +39,7 @@ var letterCombinations = function (digits) {
         '8': ['t', 'u', 'v'],
         '9': ['w', 'x', 'y', 'z']
     };
-    let ansArr = [];
-
     
+    return myBacktrak(digits.split(''), '');
 };
         
