@@ -16,21 +16,8 @@ output: array containing possible string combinations
 
 var letterCombinations = function (digits) {
     if (!digits.length) return '';
-
-    function myBacktrak(digitsLeft, curString){
-        if(!digitsLeft.length) return [];
-        let curDigit = digitsLeft.shift();
-        let lettersToAdd = digToLetMap[curDigit];
-        let reArr = [];
-        for(let i = 0; i < lettersToAdd.length; i++){
-            newStr = curString.concat(lettersToAdd[i]);
-            reArr.push.apply(myBacktrak(digitsLeft, newStr));
-        };
-        return reArr;
-    };
-    
     const digToLetMap = {
-        '2': ['a','b','c'],
+        '2': ['a', 'b', 'c'],
         '3': ['d', 'e', 'f'],
         '4': ['g', 'h', 'j'],
         '5': ['j', 'k', 'l'],
@@ -39,7 +26,25 @@ var letterCombinations = function (digits) {
         '8': ['t', 'u', 'v'],
         '9': ['w', 'x', 'y', 'z']
     };
+
+    let ansArr = []; 
+
+    function myBacktrak(digitsLeft, curString){
+        if(!digitsLeft.length){
+            ansArr.push(curString);
+            return;
+        };
+        let curDigit = digitsLeft.shift();
+        let lettersToAdd = digToLetMap[curDigit];
+        for(let i = 0; i < lettersToAdd.length; i++){
+            newStr = curString.concat(lettersToAdd[i]);
+            myBacktrak(digitsLeft, newStr);
+        };
+        return;
+    };
     
     return myBacktrak(digits.split(''), '');
-};
+}
+
+letterCombinations('23')
         
