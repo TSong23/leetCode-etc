@@ -15,11 +15,11 @@ output: array containing possible string combinations
 */
 
 var letterCombinations = function (digits) {
-    if (!digits.length) return '';
+    if (!digits.length) return [];
     const digToLetMap = {
         '2': ['a', 'b', 'c'],
         '3': ['d', 'e', 'f'],
-        '4': ['g', 'h', 'j'],
+        '4': ['g', 'h', 'i'],
         '5': ['j', 'k', 'l'],
         '6': ['m', 'n', 'o'],
         '7': ['p', 'q', 'r', 's'],
@@ -28,22 +28,24 @@ var letterCombinations = function (digits) {
     };
 
     let ansArr = []; 
+    let digitsLeft = digits.split('');
 
-    function myBacktrak(digitsLeft, curString){
-        if(!digitsLeft.length){
+    function myBacktrak(curString, digitsArr){
+        if(!digitsArr.length){
             ansArr.push(curString);
             return;
         };
-        let curDigit = digitsLeft.shift();
+        let curDigit = digitsArr[0];
         let lettersToAdd = digToLetMap[curDigit];
         for(let i = 0; i < lettersToAdd.length; i++){
-            newStr = curString.concat(lettersToAdd[i]);
-            myBacktrak(digitsLeft, newStr);
+            let newStr = curString.concat(lettersToAdd[i]);
+            myBacktrak(newStr, digitsArr.slice(1));
         };
         return;
     };
     
-    return myBacktrak(digits.split(''), '');
+    myBacktrak('', digitsLeft);
+    return ansArr;
 }
 
 letterCombinations('23')
