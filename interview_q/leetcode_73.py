@@ -19,12 +19,14 @@ class Solution:
         
         while len(rowZero) > 0:
             dr = rowZero.pop()
-            matrix[dr][:] = 0
+            for i in range(len(matrix[dr])): 
+                matrix[dr][i] = 0
         while len(colZero) > 0:
             dl = colZero.pop()
-            matrix[:,dl] = 0
+            for i in range(len(matrix)):
+                matrix[i][dl] = 0
         
-        return matrix
+        return
 
 test = Solution()
 test.setZeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
