@@ -4,7 +4,7 @@ class Solution:
     def sortedArrayToBST(self, nums):
       if len(nums) == 0:
         return None
-      mid = math.floor(len(nums) / 2)
+      mid = len(nums) / 2
       root = TreeNode(nums[mid])
       root.left = self.sortedArrayToBST(nums[0:mid])
       root.right = self.sortedArrayToBST(nums[mid+1:])
