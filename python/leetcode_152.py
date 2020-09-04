@@ -13,16 +13,17 @@ variables:
 
 Constant Memory
 N time
-
+well i guess tomorrow
 """
 
 class Solution:
     def maxProduct(self, nums):
         localMax, maxValue, globalMax = nums[0], nums[0], nums[0]
         for i in range(1, len(nums)):      
-            
+
 
         return
+
 
 
 test = Solution()
