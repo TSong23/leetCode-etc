@@ -18,11 +18,22 @@ well i guess tomorrow
 
 class Solution:
     def maxProduct(self, nums):
-        localMax, maxValue, globalMax = nums[0], nums[0], nums[0]
+        curVal, maxValue, globalMax = nums[0], nums[0], nums[0]
+        start = 0
+        maxS, maxE = 0, 0
         for i in range(1, len(nums)):      
+            curVal = curVal * nums[i]
+            if abs(curVal) > abs(maxValue):
+                maxValue = curVal
+            if curVal >= globalMax:
+                globalMax = curVal
+            else: 
+                curVal = 1
+                maxS = i+1
+                maxE = 1
+                
 
-
-        return
+        return nums.slice(maxS, maxE+1)
 
 
 
