@@ -18,8 +18,17 @@ find both max and min and switch signs if nums[i] is negative
 
 class Solution:
     def maxProduct(self, nums):
+        result, posMax, negMax = nums[0], nums[0], nums[0]
+    
+        for i in range(1, len(nums)):
+            if nums[i] < 0: posMax, negMax = negMax, posMax
+            posMax = max(nums[i], posMax*nums[i])
+            negMax = min(nums[i], negMax*nums[i])
+            result = max(result, posMax)
         
+        return result
+
 
 
 test = Solution()
-test.maxProduct([2, 3, -2, 4])
+test.maxProduct([-2,3,-4])
