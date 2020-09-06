@@ -1,5 +1,4 @@
 /*
-
 function NestedInteger() {
 
     Return true if this NestedInteger holds a single integer, rather than a nested list.
@@ -24,8 +23,16 @@ function NestedInteger() {
 };
  */
 
-var NestedIterator = function (nestedList) {
+ /*
+1. shift() the first element off
+2. recursively flatten and add to a
+3. 
+ */
 
+var NestedIterator = function (nestedList) {
+    this.nestedList = nestedList;
+    this.next;
+    this.check = new NestedInteger();
 };
 
 
@@ -34,7 +41,11 @@ var NestedIterator = function (nestedList) {
  * @returns {boolean}
  */
 NestedIterator.prototype.hasNext = function () {
-
+    if(this.nestedList.length){
+        this.next = this.nestedList.shift();
+        return true;
+    };
+    return false;
 };
 
 /**
@@ -42,11 +53,19 @@ NestedIterator.prototype.hasNext = function () {
  * @returns {integer}
  */
 NestedIterator.prototype.next = function () {
+    // check if this.next is 1. single integer, nested integer, or list
+    if(this.check.isInteger(this.next)) return this.next;
+    while(!this.next.length){
 
+    }
+    if(this.check.getInteger(this.next)) return 
+    else{
+
+    };
 };
 
-/**
- * Your NestedIterator will be called like this:
- * var i = new NestedIterator(nestedList), a = [];
- * while (i.hasNext()) a.push(i.next());
-*/
+
+
+var i = new NestedIterator([[1, 1], 2, [1, 1]]), a = [];
+while (i.hasNext()) a.push(i.next());
+console.log(a)
