@@ -54,6 +54,7 @@ NestedIterator.prototype.hasNext = function () {
  */
 NestedIterator.prototype.next = function () {
     // check if this.next is 1. single integer, nested integer, or list
+    // nananana nanananana
     if(this.check.isInteger(this.next)) return this.next;
     while(!this.next.length){
 
