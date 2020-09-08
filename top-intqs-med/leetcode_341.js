@@ -29,39 +29,29 @@ function NestedInteger() {
 3. 
  */
 
-var NestedIterator = function (nestedList) {
-    this.nestedList = nestedList;
-    this.next;
-    this.check = new NestedInteger();
+class NestedIterator{
+    constructor(nestedList){
+        this.nestedList = nestedList.forEach(el => {
+            
+        });
+        this.nextVal;
+    };
 };
 
-
-/**
- * @this NestedIterator
- * @returns {boolean}
- */
 NestedIterator.prototype.hasNext = function () {
     if(this.nestedList.length){
-        this.next = this.nestedList.shift();
+        this.nextVal = this.nestedList.shift();
         return true;
     };
     return false;
 };
 
-/**
- * @this NestedIterator
- * @returns {integer}
- */
 NestedIterator.prototype.next = function () {
     // check if this.next is 1. single integer, nested integer, or list
-    // nananana nanananana
-    if(this.check.isInteger(this.next)) return this.next;
-    while(!this.next.length){
-
-    }
-    if(this.check.getInteger(this.next)) return 
-    else{
-
+    let hold = this.next;
+    while(hold.length){
+        if (hold.isIntger()) return hold.getInteger();
+        hold = hold.getList();
     };
 };
 
