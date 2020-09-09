@@ -31,10 +31,17 @@ function NestedInteger() {
 
 class NestedIterator{
     constructor(nestedList){
-        this.nestedList = nestedList.forEach(el => {
-            
+        this.nestedList = [];
+        helper = function(el){
+            if (el.isIntger()) {
+                this.nestedList.push(el.getInteger());
+            } else {
+                helper(el);
+            };
+        };
+        nestedList.forEach(el => {
+            helper(el);
         });
-        this.nextVal;
     };
 };
 
