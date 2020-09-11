@@ -11,7 +11,14 @@ Output:
   ["aa","b"],
   ["a","a","b"]
 ]
+
+data struc: 2d arr
+suggests that i use recursion and each end point returns an array
+
+this is a really hard problem
+
 */
+
 
 
 
