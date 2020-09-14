@@ -35,9 +35,36 @@ this is a really hard problem
 
 
 var partition = function (s) {
+  const res = [];
 
+  const isPalindrome = (l, r) => {
+    // function to determine if its is a palindrome for a given slice of original string
+    // l and r are indexes to begin checking at
+    while (l < r) {
+      if (s[l] !== s[r]) return false;
+      l++;
+      r--;
+    }
+    return true;
+  };
 
+  const go = (l, list) => {
+    if (l === s.length) {
+      // if left index reaches the end, all partitions have been found for that pathway
+      res.push(list);
+    } else {
+      for (let r = l; r < s.length; r++) {
+        if (isPalindrome(l, r)) {
+          // [...list, s.slice(l, r+ 1)] 
+          // spread in current list and add the newly sliced palindrome partition
+          go(r + 1, [...list, s.slice(l, r + 1)]);
+        }
+      }
+    }
+  };
 
+  go(0, []);
+  return res;
 };
 
 console.log(partition())
