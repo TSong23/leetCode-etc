@@ -8,6 +8,11 @@ data: something to keep track of the path
 1. find all possible perfect squares
 2. subtract each one from input: 
 3. recursively call the function
+    - base case: input == 0
+    - return 1 + self(input): keeps track of how many perfect squares were used
+    - if n is 3 or below: we have to use 1,1,1 so just return three
+4. the first call of the function: use Math.min()  
+
 
 """
 
@@ -19,5 +24,4 @@ class Solution:
         while count*count < n:
             possibleSq.append(count*count)
             count += 1
-        
         
