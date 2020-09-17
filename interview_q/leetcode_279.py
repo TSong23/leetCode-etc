@@ -17,11 +17,24 @@ data: something to keep track of the path
 """
 
 
-class Solution:
-    def numSquares(self, n: int) -> int:
-        possibleSq = []
+class Solution:    
+    def __init__(self):
+        self.possibleSq = []
+
+    def numSquares(self, n: int):
         count = 1
         while count*count < n:
-            possibleSq.append(count*count)
+            self.possibleSq.append(count*count)
             count += 1
-        
+    
+    def myHelper(self, numIn):
+        if numIn == 0: return 0
+        idx = 0
+        res = []
+        while self.possibleSq[idx] > numIn:
+            res.append( self.myHelper(self.possibleSq[idx] - numIn))
+            idx +=1
+        return min(res)
+
+test = Solution()
+test.numSquares(12)
