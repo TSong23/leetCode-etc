@@ -15,7 +15,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/top-intqs-med/leetcode_131.js"
+      "program": "${workspaceFolder}/interview_q/leetcode_279.js"
     }
   ]
 }
