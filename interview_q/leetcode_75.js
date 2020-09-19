@@ -16,6 +16,8 @@ Output: [0,0,1,1,2,2]
 data struc: left, right, zero, 2
 zero and two does the same: when it hits zero, send to left idx
 if it hits a two, send to right idx
+
+what is the correct ending condition?
 */
 
 
