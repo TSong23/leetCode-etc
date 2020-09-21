@@ -13,9 +13,8 @@ Output: [0,0,1,1,2,2]
 2. pointers move to next when current idx becomes 1
 3. if its not, swap the number with the left and right ends
 
-data struc: left, right, zero, 2
-zero and two does the same: when it hits zero, send to left idx
-if it hits a two, send to right idx
+data struc: left, right, current
+
 
 what is the correct ending condition?
 */
