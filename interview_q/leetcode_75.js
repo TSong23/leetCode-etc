@@ -23,8 +23,7 @@ what is the correct ending condition?
 var sortColors = function (nums) {
     let L = 0;
     let R = nums.length - 1;
-    let two = Math.round(nums.length/2);
-    let zero = two - 1;
+    let C = 1;
 
     function helper(idx){
         if(nums[idx] === 0){
@@ -37,7 +36,7 @@ var sortColors = function (nums) {
         return;
     };
 
-    while(L < zero || R > two){
+    while(C < R){
         nums[zero] === 1 ? zero-- : helper(zero);
         nums[two] === 1 ? two++ : helper(two);
     };
