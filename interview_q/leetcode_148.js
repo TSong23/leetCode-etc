@@ -2,18 +2,18 @@
 Given the head of a linked list, return the list after sorting it in ascending order.
 Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?
 
-initial thoughts: 
+initial thoughts: merge sort
 
-keep track of start node, current node
+seperation step:
+base case: head node is the only node
+recursion: split the list into half using fast pointer and slow pointer
+call: seperation again on head of the less and more
 
-the first time, current node is < start node, start node is fixed
-send all nodes that are less than start node to be in front of start node
-reloop and determine a new start node
+merge step:
+while two lists have length, keep adding on to the list.
+return the list
 
-when the end is reached without having defined a start node, the list is sorted
-use a helper function
 
-outer loop: how do i solve this problem?
 */
 
 
