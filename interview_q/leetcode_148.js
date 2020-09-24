@@ -10,24 +10,31 @@ recursion: split the list into half using fast pointer and slow pointer
 call: seperation again on head of the less and more
 
 merge step:
-while two lists have length, keep adding on to the list.
-return the list
+while two pointers that start at head1 and head2 arent null, compare the two poitners
+and add to the list
+return the head of the list
 
 
 */
 
 
 var sortList = function (head) {
-    let start;
-    let cur;
-    while(cur){
-        if(cur < start){
-            // insert cur to be in front of start
-            // reset
-        }else{
-            cur = cur.next
-        }
+    if(!head.next) return head;
+
+    let fast = head;
+    let slow = head;
+    while(fast){
+        slow = slow.next;
+        fast = fast.next.next;
+    };
+    let head2 = slow.next;
+    slow.next = null;
+    
+    let left = sortList(head);
+    let right = sortList(head2);
+
+
+    while(left || right){
+
     }
-
-
 };
