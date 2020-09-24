@@ -13,7 +13,7 @@ reloop and determine a new start node
 when the end is reached without having defined a start node, the list is sorted
 use a helper function
 
-outer loop:
+outer loop: how do i solve this problem?
 */
 
 
