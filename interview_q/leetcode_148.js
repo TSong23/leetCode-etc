@@ -14,7 +14,7 @@ while two pointers that start at head1 and head2 arent null, compare the two poi
 and add to the list
 return the head of the list
 
-still not getting it
+
 */
 
 
