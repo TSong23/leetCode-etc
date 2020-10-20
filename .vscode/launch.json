@@ -15,7 +15,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/interview_q/leetcode_75.js"
+      "program": "${workspaceFolder}/HackerRank AppAcademy/10_19_2020.js"
     }
   ]
 }
