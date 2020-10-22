@@ -32,5 +32,16 @@ if we find that [i,j] === 1 and [j,i] === 1, the prequisites are conflicting
 */
 
 var canFinish = function (numCourses, prerequisites) {
-
+    let adjMat = [];
+    for(let i = 0; i < numCourses; i++){
+        adjMat.push(new Array(numCourses).fill(0));
+    };
+    for(let i = 0; i < prerequisites.length; i++){
+        adjMat[prerequisites[i][0]][prerequisites[i][1]] = 1;
+    };
+    for(let i = 0; i < numCourses; i++){
+        
+    }
 };
+
+canFinish(2, [[1,0], [0,1]])
