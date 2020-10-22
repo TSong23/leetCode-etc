@@ -40,8 +40,11 @@ var canFinish = function (numCourses, prerequisites) {
         adjMat[prerequisites[i][0]][prerequisites[i][1]] = 1;
     };
     for(let i = 0; i < numCourses; i++){
-        
-    }
+        for(let j = i; j < numCourses; j++){
+            if(adjMat[i][j] === 1 && adjMat[j][i] === 1) return false;
+        };
+    };
+    return true;
 };
 
-canFinish(2, [[1,0], [0,1]])
+canFinish(3, [[1, 0], [0, 2], [2, 1]])
