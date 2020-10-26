@@ -35,19 +35,20 @@ class Solution:
         return -1
     
     def helper(self, start, gas, cost):
-        i = start
-        tank = gas[i]
+        tank = gas[start]
         tripLen = len(gas) - 1
-        while(tank > 0):
+        i = start
+        while(tank >= cost[i]):
+            tank = tank - cost[i] 
             if i == tripLen:
                 i = 0
-            elif i == start:
-                return True
             else:
-                i = i + 1
-            tank = tank - cost[i] + gas[i]
+                i = i + 1 
+            tank = tank + gas[i]
+            if i == start:
+                return True                     
         return False
 
 test = Solution()
-test.canCompleteCircuit([1, 2, 3, 4, 5],
-                        [3, 4, 5, 1, 2])
+test.canCompleteCircuit([3, 3, 4],
+                        [3, 4, 4])
