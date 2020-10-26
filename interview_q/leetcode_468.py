@@ -9,6 +9,14 @@ A valid IPv6 address is an IP in the form "x1:x2:x3:x4:x5:x6:x7:x8" where:
 xi is a hexadecimal string which may contain digits, lower-case English letter ('a' to 'f') and upper-case English letters ('A' to 'F').
 Leading zeros are allowed in xi.
 For example, "2001:0db8:85a3:0000:0000:8a2e:0370:7334" and "2001:db8:85a3:0:0:8A2E:0370:7334" are valid IPv6 addresses, while "2001:0db8:85a3::8A2E:037j:7334" and "02001:0db8:85a3:0000:0000:8a2e:0370:7334" are invalid IPv6 addresses.
+
+IPv6: not concerned with the value of the number; always regard numbers to be between 0 and 9
+IPv4: only numbers between 0 and 255
+
+Brute Force: 
+1. find : or .
+2. use helper function for IPv4 and IPv6
+
 """
 
 
