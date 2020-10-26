@@ -11,28 +11,28 @@ Note: Your algorithm should run in O(n) time complexity and O(1) space complexit
 return boolean
 
 space complexity points to fact we only need variables
-one pass through
 
-if max changes twice, then yes
-if global min is reached at idx i where i <= len(nums)-3, then yes
+go from both ends
+
+have left pointer, right pointer
+
+try to find a middle pointer so that left < middle < right
+
+key is determining when each pointer moves
+
 """
 
 class Solution:
     def increasingTriplet(self, nums):
-        max_count = 0
-        max_glo = float('-inf')
-        min_idx = 0
-        min_glo = float('inf')
-        for i in range(0, len(nums)):
-            if nums[i] > max_glo:
-                max_glo = nums[i]
-                max_count += 1
-                if max_count >= 3:
-                    return True
-            if nums[i] < min_glo:
-                min_glo = nums[i]
-                min_idx = i
-        
-        if min_idx <= (len(nums) - 3):
-            return True 
+        first = second = float('inf')
+        for n in nums:
+            if n <= first:
+                first = n
+            elif n <= second:
+                second = n
+            else:
+                return True
         return False
+
+test = Solution()
+test.increasingTriplet([2, 10, 3, 4, 5, 1])
