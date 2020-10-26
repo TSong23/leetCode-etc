@@ -23,8 +23,31 @@ Travel to station 1. Your tank = 7 - 3 + 2 = 6
 Travel to station 2. Your tank = 6 - 4 + 3 = 5
 Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
 Therefore, return 3 as the starting index.
+
+data struc: use variables and a helper function inside a for loop
+
 """
-
-
 class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+    def canCompleteCircuit(self, gas, cost) -> int:
+        for i in range(0,len(gas)):
+            if self.helper(i,gas,cost):
+                return i
+        return -1
+    
+    def helper(self, start, gas, cost):
+        i = start
+        tank = gas[i]
+        tripLen = len(gas) - 1
+        while(tank > 0):
+            if i == tripLen:
+                i = 0
+            elif i == start:
+                return True
+            else:
+                i = i + 1
+            tank = tank - cost[i] + gas[i]
+        return False
+
+test = Solution()
+test.canCompleteCircuit([1, 2, 3, 4, 5],
+                        [3, 4, 5, 1, 2])
