@@ -28,21 +28,31 @@ class Solution:
                 if curNum == '.':
                     continue
                 else: 
-                    if not self.checkHashes(i,j, curNum):
+                    if not self.checkHashes(i,j,curNum):
                         return False
         return True
     
     def checkHashes(self, i, j, curNum):
+        if curNum in self.rowHash[i]:
+            return False
+        self.rowHash[i].append(curNum)
+        if curNum in self.colHash[j]:
+            return False
+        self.colHash[j].append(curNum)
         subArr = (j // 3) + (i//3)*3
+        if curNum in self.subHash[subArr]:
+            return False
+        self.subHash[subArr].append(curNum)
         return True
             
 
 
 
 test = Solution()
-test.isValidSudoku(
+printTest = test.isValidSudoku(
     [["5", "3", ".", ".", "7", ".", ".", ".", "."],
      ["6", ".", ".", "1", "9", "5", ".", ".", "."], 
      [".", "9", "8", ".", ".", ".", ".", "6", "."], 
      ["8", ".", ".", ".", "6", ".", ".", ".", "3"], [
                    "4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]])
+
