@@ -12,25 +12,31 @@ if board[i][j] == 1 and it conflicts with any of the above, then return false
 
 class Solution:
     def isValidSudoku(self, board):
+        self.board = board
         self.rowHash = dict({0: [], 1: [], 2: [], 3: [],
                              4: [], 5: [], 6: [], 7: [], 8: []})
         self.colHash = dict({0: [], 1: [], 2: [], 3: [],
                              4: [], 5: [], 6: [], 7: [], 8: []})
         self.subHash = dict({0: [], 1: [], 2: [], 3: [],
                              4: [], 5: [], 6: [], 7: [], 8: []})
-        self.fillHash(board)
+        return self.fillHash()
 
-    def fillHash(self, board):
+    def fillHash(self):
         for i in range(0,9):
-            self.addKey(i, self.rowHash)
-            self.addKey(i, self.colHash)
-            self.addKey(i, self.subHash)
-            #for j in range(0,9):
-                
+            for j in range(0,9):
+                curNum = self.board[i][j]
+                if curNum == '.':
+                    continue
+                else: 
+                    if not self.checkHashes(i,j, curNum):
+                        return False
+        return True
     
-    def addKey(self, i, myHash):
-        if not myHash.has_key(str(i)):
-            myHash[str(i)] = []
+    def checkHashes(self, i, j, curNum):
+        subArr = (j // 3) + (i//3)*3
+        return True
+            
+
 
 
 test = Solution()
