@@ -13,12 +13,10 @@ if board[i][j] == 1 and it conflicts with any of the above, then return false
 class Solution:
     def isValidSudoku(self, board):
         self.board = board
-        self.rowHash = dict({0: [], 1: [], 2: [], 3: [],
-                             4: [], 5: [], 6: [], 7: [], 8: []})
-        self.colHash = dict({0: [], 1: [], 2: [], 3: [],
-                             4: [], 5: [], 6: [], 7: [], 8: []})
-        self.subHash = dict({0: [], 1: [], 2: [], 3: [],
-                             4: [], 5: [], 6: [], 7: [], 8: []})
+        self.rowHash = [[] for i in range(9)]
+        self.colHash = [[] for i in range(9)]
+        self.subHash = [[] for i in range(9)]
+        
         return self.fillHash()
 
     def fillHash(self):
