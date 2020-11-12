@@ -29,4 +29,15 @@ class Solution:
         self.solveSudoku()
 
     def solveSudoku(self):
-
+        return True 
+    
+    def checkMissing(self,i,j):
+        presentNums = []
+        for num in self.rowList[i]:
+            presentNums.append(num)
+        for num in self.colList[j]:
+            presentNums.append(num)
+        for num in self.subList[j//3 + (i//3)*3]:
+            presentNums.append(num)
+        presentNums.sort()
+        
